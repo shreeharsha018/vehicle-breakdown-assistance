@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 10 Four-Wheeler Problems and Solutions</title>
+    <link rel="stylesheet" href="4w.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Top 10 Four-Wheeler Problems and Solutions</h1>
+        </div>
+    </header>
+
+    <section class="services">
+        <div class="container">
+            <table id="problems-table">
+                <thead>
+                    <tr>
+                        <th>Problem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr onclick="showSolution('engine-overheating')">
+                        <td>Engine Overheating</td>
+                    </tr>
+                    <tr onclick="showSolution('dead-battery')">
+                        <td>Dead Battery</td>
+                    </tr>
+                    <tr onclick="showSolution('flat-tire')">
+                        <td>Flat Tire</td>
+                    </tr>
+                    <tr onclick="showSolution('brake-issues')">
+                        <td>Brake Issues</td>
+                    </tr>
+                    <tr onclick="showSolution('transmission-problems')">
+                        <td>Transmission Problems</td>
+                    </tr>
+                    <tr onclick="showSolution('alternator-failure')">
+                        <td>Alternator Failure</td>
+                    </tr>
+                    <tr onclick="showSolution('faulty-spark-plugs')">
+                        <td>Faulty Spark Plugs</td>
+                    </tr>
+                    <tr onclick="showSolution('radiator-leaks')">
+                        <td>Radiator Leaks</td>
+                    </tr>
+                    <tr onclick="showSolution('fuel-pump-failure')">
+                        <td>Fuel Pump Failure</td>
+                    </tr>
+                    <tr onclick="showSolution('electrical-problems')">
+                        <td>Electrical Problems</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div id="solution-container">
+                <h2>Solution</h2>
+                <div id="solution-content"></div>
+            </div>
+        </div>
+    </section>
+
+    <script src="4w.js"></script>
+</body>
+</html>
