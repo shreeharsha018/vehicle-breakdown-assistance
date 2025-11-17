@@ -9,6 +9,7 @@ pnpm-lock.yaml
 .env.local
 .env.*.local
 
+
 # IDE & Editor
 .vscode/
 .idea/
