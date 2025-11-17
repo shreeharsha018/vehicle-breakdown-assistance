@@ -96,6 +96,7 @@ document.querySelectorAll('tbody tr').forEach(row => {
         const problem = this.getAttribute('data-problem');
         document.getElementById('solution-text').innerHTML = problemData[problem];
         document.getElementById('solution-container').style.display = 'block';
+        document.getElementById('solution-container').scrollIntoView({ behavior: 'smooth' });
     });
 });
 });

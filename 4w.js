@@ -1,57 +1,70 @@
-const solutions = {
-    'engine-overheating': `
-        <ol>
-            <li><a href="https://youtu.be/lBslHMW8i_Y?si=-H9I-Cd6HM-HgjEV" target="_blank">Overheating can occur due to a malfunctioning radiator, a broken water pump, or low coolant levels. When your engine overheats, it’s crucial to stop driving immediately to avoid severe damage. Wait for the engine to cool before checking the coolant level. If it's low, refill with the appropriate coolant. Ensure the radiator fans are working and check for any leaks in the cooling system. Regularly maintaining the cooling system, including flushing the radiator and replacing hoses, can prevent this issue.</a></li>
-        </ol>
-    `,
-    'dead-battery': `
-        <ol>
-            <li><a href="https://youtu.be/VdnkRQF5Cps?si=FW8Sif6Q5JHFw7tF" target="_blank"></a>xA dead battery is often caused by leaving lights on, a faulty alternator, or an old battery. If your car won't start, try jump-starting it with another vehicle or a portable battery jumper. If the car starts, drive it for at least 20 minutes to recharge the battery. If it doesn’t hold a charge, test the battery and alternator at an auto parts store. Regularly checking the battery terminals for corrosion and ensuring a tight connection can help avoid this problem. Replacing the battery every 3-5 years is also recommended.</li>
-            
-        </ol>
-    `,
-    'flat-tire': `
-        <ol>
-            <li><a href="https://youtu.be/Bq5To-ZH160?si=wTHyuSJFov1lTmHx" target="_blank">A flat tire can be caused by punctures, improper inflation, or wear and tear. If you experience a flat tire, pull over safely and use a spare tire or a tire repair kit to fix it temporarily. Check for the cause of the flat, such as nails or other debris. To prevent flats, regularly inspect tires for proper inflation, tread wear, and any damage. Rotate your tires every 5,000 to 8,000 miles and replace them when the tread depth is below 2/32 of an inch.</a></li>
-        </ol>
-    `,
-    'brake-issues': `
-         <ol>
-            <li><a href="https://youtu.be/9CAlqxXv_I8?si=W1sa8MHTkyt1pVW8" target="_blank">Brake problems, such as squeaking or reduced braking power, can be due to worn brake pads, low brake fluid, or damaged rotors. If you notice any issues, inspect the brake pads for wear and replace them if necessary. Check the brake fluid level and top it off if it's low. If the brakes feel spongy, there might be air in the brake lines, which requires bleeding the brakes. Regular brake maintenance and prompt attention to any abnormalities can ensure your braking system remains reliable.</a></li>
-        </ol>
-    `,
-    'transmission-problems': `
-        <ol>
-            <li><a href="https://youtu.be/WjNbeInU6-4?si=BPA7Fa4gFOrOErkc" target="_blank">Transmission issues, such as slipping gears or rough shifting, can stem from low transmission fluid, worn-out clutches, or faulty sensors. If you notice these problems, check the transmission fluid level and quality. Refill or replace the fluid if it's low or dirty. For more serious issues, a mechanic might need to inspect the transmission system. Regularly servicing the transmission, including fluid changes and filter replacements, can help prevent major issues.</a></li>
-        </ol>
-    `,
-    'alternator-failure': `
-         <ol>
-            <li><a href="https://youtu.be/XC8W9RHGTMI?si=i8PvedtRaGeyKQsi" target="_blank">A failing alternator can cause the battery to drain quickly, dim lights, or electrical malfunctions. If your car shows these symptoms, test the alternator’s output with a voltmeter. If it's not producing the correct voltage, it might need replacing. Regularly inspecting the alternator belt for wear and ensuring a clean connection can prolong the alternator’s life. Replacing the alternator every 100,000 to 150,000 miles can prevent unexpected failures.</a></li>
-        </ol>
-    `,
-    'faulty-spark-plugs': `
-         <ol>
-            <li><a href="https://youtu.be/OQtoRWB-Lhg?si=hy-eVm5mN04rWIOJ" target="_blank">Worn or dirty spark plugs can cause engine misfires, poor fuel economy, or difficulty starting the car. If your engine runs rough, inspect the spark plugs and replace any that are worn or covered in deposits. Using the correct type of spark plug for your engine and changing them every 30,000 to 50,000 miles can maintain optimal engine performance. Ensuring the spark plug gaps are correctly set during installation is also essential..</a></li>
-        </ol>
-    `,
-    'radiator-leaks': `
-         <ol>
-            <li><a href="https://youtu.be/2VhPSU7-Zy0?si=r6W4ZNCXmm7NtzgB" target="_blank">Radiator leaks can lead to coolant loss and engine overheating. If you notice coolant puddles under your car, inspect the radiator and hoses for cracks or damage. Seal small leaks with a radiator sealant as a temporary fix, but replace damaged components as soon as possible. Regularly checking the coolant level and maintaining the radiator system can prevent leaks. Flushing the radiator and using the correct coolant mix are also vital maintenance steps.</a></li>
-        </ol>
-    `,
-    'fuel-pump-failure': `
-        <ol>
-            <li><a href="https://youtu.be/mDIlwbx0B-s?si=h65f5i1UWzNmEmuY" target="_blank">A failing fuel pump can cause engine sputtering, loss of power, or difficulty starting. If your car exhibits these symptoms, test the fuel pressure with a gauge. If the pressure is low, the fuel pump may need replacing. Keeping your fuel tank at least a quarter full can help prevent fuel pump strain. Regularly replacing the fuel filter can also ensure a steady fuel supply to the engine, reducing the risk of pump failure.</a></li>
-        </ol>
-    `,
-    'electrical-problems': `
-         <ol>
-            <li><a href="https://youtu.be/BcGT1bNrsAM?si=kEVbglAB-TKfQG74" target="_blank">Electrical issues, such as malfunctioning lights, power windows, or stereo systems, can be due to blown fuses, faulty wiring, or a weak battery. If you experience electrical problems, check the car’s fuses and replace any that are blown. Inspect wiring for damage or loose connections. If the problem persists, a professional diagnosis may be necessary. Regularly checking the electrical system and keeping the battery terminals clean can help avoid these issues.</a></li>
-        </ol>
-    `
-};
-
-function showSolution(problemId) {
-    document.getElementById('solution-content').innerHTML = solutions[problemId];
-}
+document.addEventListener("DOMContentLoaded", function() {
+    const problemData = {
+    "engine-overheating": `
+    <h3>Engine Overheating</h3>
+    <p>Stop driving immediately to avoid severe engine damage. Allow the engine to cool completely before checking coolant levels. Refill with the appropriate coolant and check radiator, hoses, and fans for leaks or failure.</p>
+    <p>Flush the cooling system regularly, maintain proper coolant levels, and ensure the thermostat operates correctly to prevent overheating.</p>
+    <a class="solution-button" href="https://youtu.be/lBslHMW8i_Y?si=-H9I-Cd6HM-HgjEV" target="_blank" rel="noopener noreferrer">Watch Solution</a>
+`,
+    "dead-battery": `
+    <h3>Dead Battery</h3>
+    <p>Try jump-starting with another vehicle or a portable battery jumper. If the car starts, drive it for at least 20 minutes to recharge the battery. Clean battery terminals for corrosion and ensure tight connections.</p>
+    <p>Regularly test the battery and alternator, replace the battery every 3-5 years, and keep terminals clean to prevent battery drain and failure.</p>
+    <a class="solution-button" href="https://youtu.be/VdnkRQF5Cps?si=FW8Sif6Q5JHFw7tF" target="_blank" rel="noopener noreferrer">Watch Solution</a>
+`,
+    "flat-tire": `
+    <h3>Flat Tire</h3>
+    <p>Pull over safely and use a spare tire or repair kit for temporary fixing. Inspect for punctures or debris causing the flat. Check tire pressure and condition regularly.</p>
+    <p>Rotate tires every 5,000-8,000 miles, maintain proper inflation, and replace tires when tread depth drops below 2/32 of an inch for safety.</p>
+    <a class="solution-button" href="https://youtu.be/Bq5To-ZH160?si=wTHyuSJFov1lTmHx" target="_blank" rel="noopener noreferrer">Watch Solution</a>
+`,
+    "brake-issues": `
+    <h3>Brake Issues</h3>
+    <p>Inspect brake pads for wear and replace if necessary. Check brake fluid level and top off if low. If brakes feel spongy, air may be in the brake lines requiring a bleed procedure.</p>
+    <p>Replace worn brake pads promptly, maintain proper brake fluid levels, and test braking power regularly for safe and reliable stopping.</p>
+    <a class="solution-button" href="https://youtu.be/9CAlqxXv_I8?si=W1sa8MHTkyt1pVW8" target="_blank" rel="noopener noreferrer">Watch Solution</a>
+`,
+    "transmission-problems": `
+    <h3>Transmission Problems</h3>
+    <p>Check transmission fluid level and quality, replacing if dirty or low. Inspect for slipping gears or rough shifting. Test for proper operation and gear engagement.</p>
+    <p>Service transmission fluid regularly, include filter replacements, and address abnormal sounds or shifting problems immediately to prevent costly damage.</p>
+    <a class="solution-button" href="https://youtu.be/WjNbeInU6-4?si=BPA7Fa4gFOrOErkc" target="_blank" rel="noopener noreferrer">Watch Solution</a>
+`,
+    "alternator-failure": `
+    <h3>Alternator Failure</h3>
+    <p>Check for symptoms like dim lights, battery drain, or electrical malfunctions. Test the alternator's output with a voltmeter. If it's not producing correct voltage, replacement may be necessary.</p>
+    <p>Inspect the alternator belt regularly for wear, ensure clean connections, and replace the alternator every 100,000-150,000 miles to prevent unexpected failures.</p>
+    <a class="solution-button" href="https://youtu.be/XC8W9RHGTMI?si=i8PvedtRaGeyKQsi" target="_blank" rel="noopener noreferrer">Watch Solution</a>
+`,
+    "faulty-spark-plugs": `
+    <h3>Faulty Spark Plugs</h3>
+    <p>Worn or fouled spark plugs cause engine misfires, rough running, or poor fuel economy. Inspect plugs and replace any that are worn or covered in deposits. Set gaps to factory specifications.</p>
+    <p>Replace spark plugs every 30,000-50,000 miles with the correct type for your engine. Proper gaps ensure optimal combustion and engine performance.</p>
+    <a class="solution-button" href="https://youtu.be/OQtoRWB-Lhg?si=hy-eVm5mN04rWIOJ" target="_blank" rel="noopener noreferrer">Watch Solution</a>
+`,
+    "radiator-leaks": `
+    <h3>Radiator Leaks</h3>
+    <p>Inspect for coolant puddles under the vehicle. Check radiator and hoses for cracks or damage. Seal small leaks temporarily with sealant, but replace damaged components permanently.</p>
+    <p>Flush the radiator regularly, use the correct coolant mix, and replace hoses when they become brittle to prevent leaks and overheating.</p>
+    <a class="solution-button" href="https://youtu.be/2VhPSU7-Zy0?si=r6W4ZNCXmm7NtzgB" target="_blank" rel="noopener noreferrer">Watch Solution</a>
+`,
+    "fuel-pump-failure": `
+    <h3>Fuel Pump Failure</h3>
+    <p>A failing fuel pump causes sputtering, loss of power, or difficulty starting. Test fuel pressure with a gauge. If pressure is low or zero, the pump may need replacement.</p>
+    <p>Keep fuel tank at least a quarter full to cool the pump, replace fuel filters regularly, and maintain proper fuel pressure for reliable engine operation.</p>
+    <a class="solution-button" href="https://youtu.be/mDIlwbx0B-s?si=h65f5i1UWzNmEmuY" target="_blank" rel="noopener noreferrer">Watch Solution</a>
+`,
+    "electrical-problems": `
+    <h3>Electrical Problems</h3>
+    <p>Check fuses and replace any that are blown. Inspect wiring for damage or loose connections. Test battery voltage and charging system for proper operation.</p>
+    <p>Keep battery terminals clean, secure all electrical connections with dielectric grease, and perform regular electrical system checks to prevent malfunctions.</p>
+    <a class="solution-button" href="https://youtu.be/BcGT1bNrsAM?si=kEVbglAB-TKfQG74" target="_blank" rel="noopener noreferrer">Watch Solution</a>
+`
+    };
+    function showSolution(problemId) {
+        document.getElementById('solution-content').innerHTML = problemData[problemId];
+        document.getElementById('solution-container').style.display = 'block';
+        document.getElementById('solution-container').scrollIntoView({ behavior: 'smooth' });
+    }
+    window.showSolution = showSolution;
+});

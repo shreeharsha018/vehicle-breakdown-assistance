@@ -290,6 +290,390 @@ export const fallbackProblemsByVehicle = {
         videoLink: "https://www.youtube.com/watch?v=J4SELf6U4U0"
       }
     }
+  ],
+  "3-wheeler": [
+    {
+      id: "3w-engine-starting",
+      title: "Engine Starting Problems",
+      vehicleType: "3-wheeler",
+      description: "Engine cranks slowly or fails to start due to battery or fuel system issues.",
+      solutionId: "3w-engine-starting",
+      solution: {
+        description: "Check battery terminals, test fuel flow, and verify spark to restore reliable starting.",
+        steps: [
+          "Clean battery terminals and ensure tight connections on both positive and negative clamps.",
+          "Test battery voltage with a multimeter; it should be around 12.6 volts at rest.",
+          "Verify fuel reaches the carburetor by observing flow in the fuel line.",
+          "Inspect and clean or replace spark plugs if fouled or worn."
+        ],
+        tools: ["Multimeter", "Battery terminal cleaner", "Spark plug socket"],
+        precautions: "Keep the fuel tank at least a quarter full to prevent pump strain.",
+        videoLink: "https://youtu.be/lBslHMW8i_Y?si=-H9I-Cd6HM-HgjEV"
+      }
+    },
+    {
+      id: "3w-brake-issues",
+      title: "Brake Issues",
+      vehicleType: "3-wheeler",
+      description: "Brakes feel spongy or lack stopping power due to fluid degradation.",
+      solutionId: "3w-brake-issues",
+      solution: {
+        description: "Inspect brake fluid level, replace worn pads, and bleed air from the system.",
+        steps: [
+          "Check brake fluid reservoir and top up with the specified DOT fluid if low.",
+          "Remove wheels and inspect brake pads for thickness; replace if below 2mm.",
+          "Bleed the brake system by opening bleeder valves and pumping brake fluid until clear.",
+          "Test brakes in a safe area before normal operation."
+        ],
+        tools: ["Brake fluid", "Brake bleeder kit", "Torque wrench"],
+        precautions: "Use only manufacturer-specified brake fluid to avoid system damage.",
+        videoLink: "https://youtu.be/VdnkRQF5Cps?si=FW8Sif6Q5JHFw7tF"
+      }
+    },
+    {
+      id: "3w-transmission",
+      title: "Transmission Problems",
+      vehicleType: "3-wheeler",
+      description: "Gears grind or shift roughly due to low fluid or worn components.",
+      solutionId: "3w-transmission",
+      solution: {
+        description: "Check transmission fluid level and condition, adjust clutch cable tension.",
+        steps: [
+          "Inspect transmission fluid level with the engine at operating temperature.",
+          "Replace transmission fluid if it appears dark or burnt.",
+          "Adjust clutch cable free play according to manufacturer specifications.",
+          "Test gear engagement and replace worn synchros if grinding persists."
+        ],
+        tools: ["Transmission fluid", "Feeler gauges", "Wrench set"],
+        precautions: "Service transmission fluid regularly to prevent premature wear.",
+        videoLink: "https://youtu.be/Bq5To-ZH160?si=wTHyuSJFov1lTmHx"
+      }
+    },
+    {
+      id: "3w-electrical",
+      title: "Electrical Problems",
+      vehicleType: "3-wheeler",
+      description: "Lights flicker, battery drains quickly, or electrical components malfunction.",
+      solutionId: "3w-electrical",
+      solution: {
+        description: "Test battery and alternator output, inspect wiring and fuses.",
+        steps: [
+          "Check battery terminals for corrosion and clean with a wire brush.",
+          "Test alternator output with a multimeter; should read 13.5-14.5 volts at idle.",
+          "Inspect all fuses and relays in the electrical box for blown components.",
+          "Check ground connections for corrosion or loose connections."
+        ],
+        tools: ["Multimeter", "Wire cleaner", "Replacement fuses"],
+        precautions: "Disconnect the battery before working on electrical components.",
+        videoLink: "https://youtu.be/9CAlqxXv_I8?si=W1sa8MHTkyt1pVW8"
+      }
+    },
+    {
+      id: "3w-suspension",
+      title: "Suspension Problems",
+      vehicleType: "3-wheeler",
+      description: "Bouncing, sagging, or uneven handling due to worn suspension components.",
+      solutionId: "3w-suspension",
+      solution: {
+        description: "Inspect shocks and springs, check alignment, and replace worn components.",
+        steps: [
+          "Check shock absorbers for leaks or damage and bounce test the suspension.",
+          "Inspect springs for cracks or permanent sag.",
+          "Check wheel alignment and adjust if necessary.",
+          "Replace worn bushings or control arms to restore handling."
+        ],
+        tools: ["Measuring tape", "Alignment tool", "Spring compressor"],
+        precautions: "Always support the vehicle safely before working on suspension.",
+        videoLink: "https://youtu.be/WjNbeInU6-4?si=BPA7Fa4gFOrOErkc"
+      }
+    },
+    {
+      id: "3w-overheating",
+      title: "Overheating Problems",
+      vehicleType: "3-wheeler",
+      description: "Engine temperature rises abnormally during normal operation.",
+      solutionId: "3w-overheating",
+      solution: {
+        description: "Check coolant level, inspect radiator and hoses, verify fan operation.",
+        steps: [
+          "Allow engine to cool and check coolant level; top up if necessary.",
+          "Inspect radiator fins for blockage and clean with compressed air.",
+          "Check cooling hoses for cracks or leaks.",
+          "Verify cooling fan operates; replace if motor is faulty."
+        ],
+        tools: ["Coolant", "Radiator cleaner", "Thermostat tester"],
+        precautions: "Never open a hot radiator cap; wait for the engine to cool.",
+        videoLink: "https://youtu.be/XC8W9RHGTMI?si=i8PvedtRaGeyKQsi"
+      }
+    },
+    {
+      id: "3w-fuel-system",
+      title: "Fuel System Problems",
+      vehicleType: "3-wheeler",
+      description: "Engine sputters, stalls, or lacks fuel pressure.",
+      solutionId: "3w-fuel-system",
+      solution: {
+        description: "Inspect fuel filter, test pump pressure, and check fuel lines.",
+        steps: [
+          "Replace fuel filter if clogged; check for debris in the fuel tank.",
+          "Test fuel pump pressure with a gauge; should match manufacturer specs.",
+          "Inspect fuel lines for cracks, kinks, or disconnections.",
+          "Clean carburetor jets if fuel flow is restricted."
+        ],
+        tools: ["Fuel pressure gauge", "Fuel filter", "Carburetor cleaner"],
+        precautions: "Work in a well-ventilated area away from ignition sources.",
+        videoLink: "https://youtu.be/OQtoRWB-Lhg?si=hy-eVm5mN04rWIOJ"
+      }
+    },
+    {
+      id: "3w-exhaust-system",
+      title: "Exhaust System Problems",
+      vehicleType: "3-wheeler",
+      description: "Loud exhaust noise, backfiring, or visible leaks.",
+      solutionId: "3w-exhaust-system",
+      solution: {
+        description: "Locate leaks, replace gaskets, tighten connections.",
+        steps: [
+          "Inspect exhaust manifold and pipes for cracks or rust.",
+          "Feel for pulses around exhaust joints to identify leaks.",
+          "Replace worn exhaust gaskets and tighten fasteners evenly.",
+          "Check muffler mounting hardware and replace if rusted through."
+        ],
+        tools: ["Exhaust gasket kit", "Socket set", "High-temp sealant"],
+        precautions: "Wear gloves; exhaust components remain hot after engine shutdown.",
+        videoLink: "https://youtu.be/2VhPSU7-Zy0?si=r6W4ZNCXmm7NtzgB"
+      }
+    },
+    {
+      id: "3w-steering",
+      title: "Steering Problems",
+      vehicleType: "3-wheeler",
+      description: "Steering feels heavy, loose, or unresponsive.",
+      solutionId: "3w-steering",
+      solution: {
+        description: "Check power steering fluid, inspect steering linkage, verify alignment.",
+        steps: [
+          "Check power steering fluid level and top up if low.",
+          "Inspect steering linkage for wear or damage.",
+          "Test for proper steering response at various speeds.",
+          "Adjust alignment if steering pulls to one side."
+        ],
+        tools: ["Power steering fluid", "Steering alignment tool", "Socket set"],
+        precautions: "Do not force steering if it feels unusually heavy.",
+        videoLink: "https://youtu.be/mDIlwbx0B-s?si=h65f5i1UWzNmEmuY"
+      }
+    },
+    {
+      id: "3w-battery-drain",
+      title: "Battery Draining Quickly",
+      vehicleType: "3-wheeler",
+      description: "Battery loses charge rapidly even when parked.",
+      solutionId: "3w-battery-drain",
+      solution: {
+        description: "Test for parasitic draw, check alternator, inspect for electrical faults.",
+        steps: [
+          "Test battery with a load tester; replace if it fails.",
+          "Use a multimeter to check for parasitic electrical draw with engine off.",
+          "Disconnect suspect components one at a time to identify the drain source.",
+          "Repair or replace faulty wiring or components causing the drain."
+        ],
+        tools: ["Multimeter", "Battery load tester", "Replacement battery"],
+        precautions: "Check all aftermarket accessories for installation issues.",
+        videoLink: "https://youtu.be/BcGT1bNrsAM?si=kEVbglAB-TKfQG74"
+      }
+    }
+  ],
+  "4-wheeler": [
+    {
+      id: "4w-engine-overheating",
+      title: "Engine Overheating",
+      vehicleType: "4-wheeler",
+      description: "Temperature gauge spikes, steam from engine, risk of damage.",
+      solutionId: "4w-engine-overheating",
+      solution: {
+        description: "Stop immediately, allow cooling, check coolant and radiator.",
+        steps: [
+          "Pull over safely and turn off the engine to prevent damage.",
+          "Wait at least 30 minutes before checking the radiator cap.",
+          "Check coolant level in the overflow tank and radiator.",
+          "Inspect radiator for blockage and check for visible coolant leaks."
+        ],
+        tools: ["Coolant", "Radiator flush kit", "Thermostat"],
+        precautions: "Do not open a hot radiator cap; steam can cause severe burns.",
+        videoLink: "https://youtu.be/lBslHMW8i_Y?si=-H9I-Cd6HM-HgjEV"
+      }
+    },
+    {
+      id: "4w-dead-battery",
+      title: "Dead Battery",
+      vehicleType: "4-wheeler",
+      description: "Engine won't crank, lights are dim or off.",
+      solutionId: "4w-dead-battery",
+      solution: {
+        description: "Jump-start the vehicle, test charging system, replace if needed.",
+        steps: [
+          "Connect jumper cables positive to positive, negative to engine ground on dead vehicle.",
+          "Start the donor vehicle and wait 2-3 minutes before starting yours.",
+          "Keep both vehicles running for 5+ minutes, then drive for at least 20 minutes.",
+          "Test battery and alternator voltage; replace battery if it won't hold charge."
+        ],
+        tools: ["Jumper cables", "Multimeter", "Replacement battery"],
+        precautions: "Never reverse jumper cable connections; check battery terminals for corrosion.",
+        videoLink: "https://youtu.be/VdnkRQF5Cps?si=FW8Sif6Q5JHFw7tF"
+      }
+    },
+    {
+      id: "4w-flat-tire",
+      title: "Flat Tire",
+      vehicleType: "4-wheeler",
+      description: "Loss of tire pressure causing handling issues or complete deflation.",
+      solutionId: "4w-flat-tire",
+      solution: {
+        description: "Move to safe location, use spare tire or repair kit.",
+        steps: [
+          "Pull over to a safe, level location away from traffic.",
+          "Apply parking brake and remove wheel trim if necessary.",
+          "Loosen lug nuts, jack up vehicle, remove wheel, and install spare.",
+          "Tighten lug nuts in star pattern and lower vehicle; have tire repaired professionally."
+        ],
+        tools: ["Jack", "Lug wrench", "Spare tire", "Tire repair kit"],
+        precautions: "Do not drive at high speed on a temporary spare; get tire repaired quickly.",
+        videoLink: "https://youtu.be/Bq5To-ZH160?si=wTHyuSJFov1lTmHx"
+      }
+    },
+    {
+      id: "4w-brake-issues",
+      title: "Brake Issues",
+      vehicleType: "4-wheeler",
+      description: "Soft pedal, brake fade, or reduced stopping power.",
+      solutionId: "4w-brake-issues",
+      solution: {
+        description: "Check brake fluid, inspect pads and rotors, bleed system if necessary.",
+        steps: [
+          "Check brake fluid level; it should be between MIN and MAX marks.",
+          "Inspect brake pads for wear; replace if thickness is below 3mm.",
+          "Check rotors for damage or excessive runout.",
+          "Bleed brakes if pedal feels spongy using the proper sequence."
+        ],
+        tools: ["Brake fluid", "Brake bleeder kit", "Torque wrench"],
+        precautions: "Replace all four brake pads at once for even braking.",
+        videoLink: "https://youtu.be/9CAlqxXv_I8?si=W1sa8MHTkyt1pVW8"
+      }
+    },
+    {
+      id: "4w-transmission-problems",
+      title: "Transmission Problems",
+      vehicleType: "4-wheeler",
+      description: "Slipping gears, rough shifting, or lack of power transfer.",
+      solutionId: "4w-transmission-problems",
+      solution: {
+        description: "Check transmission fluid level and condition, inspect for leaks.",
+        steps: [
+          "Check transmission fluid with engine running and transmission in Park on level ground.",
+          "Note fluid color and odor; dark or burnt fluid requires replacement.",
+          "Inspect transmission housing for leaks.",
+          "Have transmission serviced or rebuilt if shifting remains problematic."
+        ],
+        tools: ["Transmission fluid", "Transmission pan gasket", "Socket set"],
+        precautions: "Regular transmission servicing prevents costly repairs.",
+        videoLink: "https://youtu.be/WjNbeInU6-4?si=BPA7Fa4gFOrOErkc"
+      }
+    },
+    {
+      id: "4w-alternator-failure",
+      title: "Alternator Failure",
+      vehicleType: "4-wheeler",
+      description: "Dim lights, dashboard warning light, or dead battery despite running.",
+      solutionId: "4w-alternator-failure",
+      solution: {
+        description: "Test alternator output, check belt tension, replace if faulty.",
+        steps: [
+          "With engine running, measure alternator output at the battery terminals; should be 13.5-14.5 volts.",
+          "Inspect serpentine belt for cracks, glazing, or proper tension.",
+          "Check alternator connector and wiring for corrosion.",
+          "Replace alternator if output is below spec; have professionally installed."
+        ],
+        tools: ["Multimeter", "Alternator replacement unit", "Socket set"],
+        precautions: "Alternator replacement requires significant technical knowledge.",
+        videoLink: "https://youtu.be/XC8W9RHGTMI?si=i8PvedtRaGeyKQsi"
+      }
+    },
+    {
+      id: "4w-faulty-spark-plugs",
+      title: "Faulty Spark Plugs",
+      vehicleType: "4-wheeler",
+      description: "Engine misfire, rough idle, or difficulty starting.",
+      solutionId: "4w-faulty-spark-plugs",
+      solution: {
+        description: "Inspect spark plugs, replace if fouled or worn.",
+        steps: [
+          "Allow engine to cool, locate spark plugs under the hood.",
+          "Remove one spark plug and inspect for wear, fouling, or gap issues.",
+          "Check gap with a gauge; adjust or replace if outside specifications.",
+          "Replace all spark plugs with factory-recommended type; gap correctly before installation."
+        ],
+        tools: ["Spark plug socket", "Spark plug gap tool", "Replacement spark plugs"],
+        precautions: "Replace spark plugs every 30,000-100,000 miles depending on type.",
+        videoLink: "https://youtu.be/OQtoRWB-Lhg?si=hy-eVm5mN04rWIOJ"
+      }
+    },
+    {
+      id: "4w-radiator-leaks",
+      title: "Radiator Leaks",
+      vehicleType: "4-wheeler",
+      description: "Coolant puddles under vehicle, overheating, steam from engine.",
+      solutionId: "4w-radiator-leaks",
+      solution: {
+        description: "Locate leak, seal small leaks temporarily, replace radiator if necessary.",
+        steps: [
+          "Identify leak location; may be from radiator, hoses, or connections.",
+          "For small leaks, use radiator stop-leak sealant as temporary fix.",
+          "For large leaks or cracks, drain coolant and replace radiator or hoses.",
+          "Monitor coolant level closely and have professional repair planned."
+        ],
+        tools: ["Radiator stop-leak", "Coolant", "Replacement radiator"],
+        precautions: "Do not ignore radiator leaks; they lead to engine damage.",
+        videoLink: "https://youtu.be/2VhPSU7-Zy0?si=r6W4ZNCXmm7NtzgB"
+      }
+    },
+    {
+      id: "4w-fuel-pump-failure",
+      title: "Fuel Pump Failure",
+      vehicleType: "4-wheeler",
+      description: "Engine sputters, loss of power, or difficulty starting.",
+      solutionId: "4w-fuel-pump-failure",
+      solution: {
+        description: "Test fuel pressure, inspect fuel lines, replace pump if faulty.",
+        steps: [
+          "Connect fuel pressure gauge to fuel rail; check reading against factory specs.",
+          "Listen for pump humming sound when ignition is turned on.",
+          "Inspect fuel filter for clogs; replace if necessary.",
+          "Replace fuel pump if pressure is low or inconsistent; typically requires tank removal."
+        ],
+        tools: ["Fuel pressure gauge", "Fuel filter", "Replacement fuel pump"],
+        precautions: "Keep fuel tank at least a quarter full to cool the pump.",
+        videoLink: "https://youtu.be/mDIlwbx0B-s?si=h65f5i1UWzNmEmuY"
+      }
+    },
+    {
+      id: "4w-electrical-problems",
+      title: "Electrical Problems",
+      vehicleType: "4-wheeler",
+      description: "Lights not working, power windows stuck, warning lights on.",
+      solutionId: "4w-electrical-problems",
+      solution: {
+        description: "Check fuses and relays, test battery, inspect wiring.",
+        steps: [
+          "Locate fuse box and check for blown fuses; replace with correct amperage.",
+          "Test battery voltage; should be 12.6 volts at rest.",
+          "Inspect wiring harnesses for damage or loose connections.",
+          "Use multimeter to test power at various components."
+        ],
+        tools: ["Multimeter", "Replacement fuses", "Wire connectors"],
+        precautions: "Disconnect battery before working on electrical components.",
+        videoLink: "https://youtu.be/BcGT1bNrsAM?si=kEVbglAB-TKfQG74"
+      }
+    }
   ]
 };
 
