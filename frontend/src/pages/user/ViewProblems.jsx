@@ -308,7 +308,7 @@ export const fallbackProblemsByVehicle = {
         ],
         tools: ["Multimeter", "Battery terminal cleaner", "Spark plug socket"],
         precautions: "Keep the fuel tank at least a quarter full to prevent pump strain.",
-        videoLink: "https://youtu.be/lBslHMW8i_Y?si=-H9I-Cd6HM-HgjEV"
+        videoLink: "https://youtu.be/jAf8_vJWOqY?si=eHyVZY2WEJ8AKTS2"
       }
     },
     {
@@ -327,7 +327,7 @@ export const fallbackProblemsByVehicle = {
         ],
         tools: ["Brake fluid", "Brake bleeder kit", "Torque wrench"],
         precautions: "Use only manufacturer-specified brake fluid to avoid system damage.",
-        videoLink: "https://youtu.be/VdnkRQF5Cps?si=FW8Sif6Q5JHFw7tF"
+        videoLink: "https://youtu.be/5mCcYxZW7sA?si=wPEhzHJG0Y3nP8fQ"
       }
     },
     {
@@ -346,7 +346,7 @@ export const fallbackProblemsByVehicle = {
         ],
         tools: ["Transmission fluid", "Feeler gauges", "Wrench set"],
         precautions: "Service transmission fluid regularly to prevent premature wear.",
-        videoLink: "https://youtu.be/Bq5To-ZH160?si=wTHyuSJFov1lTmHx"
+        videoLink: "https://youtu.be/PKPvM1bqzFg?si=n3G4hRE9o2mS7UL1"
       }
     },
     {
@@ -365,7 +365,7 @@ export const fallbackProblemsByVehicle = {
         ],
         tools: ["Multimeter", "Wire cleaner", "Replacement fuses"],
         precautions: "Disconnect the battery before working on electrical components.",
-        videoLink: "https://youtu.be/9CAlqxXv_I8?si=W1sa8MHTkyt1pVW8"
+        videoLink: "https://youtu.be/Mdl5NCXn1lg?si=ht7eU0d9KjPMWyJr"
       }
     },
     {
@@ -384,7 +384,7 @@ export const fallbackProblemsByVehicle = {
         ],
         tools: ["Measuring tape", "Alignment tool", "Spring compressor"],
         precautions: "Always support the vehicle safely before working on suspension.",
-        videoLink: "https://youtu.be/WjNbeInU6-4?si=BPA7Fa4gFOrOErkc"
+        videoLink: "https://youtu.be/7QRzt5JN_aY?si=WJjGMp2lODvM6Yw0"
       }
     },
     {
@@ -403,7 +403,7 @@ export const fallbackProblemsByVehicle = {
         ],
         tools: ["Coolant", "Radiator cleaner", "Thermostat tester"],
         precautions: "Never open a hot radiator cap; wait for the engine to cool.",
-        videoLink: "https://youtu.be/XC8W9RHGTMI?si=i8PvedtRaGeyKQsi"
+        videoLink: "https://youtu.be/0XE2T4R0yeU?si=Kd6gEcgcRV8GxHVu"
       }
     },
     {
@@ -422,7 +422,7 @@ export const fallbackProblemsByVehicle = {
         ],
         tools: ["Fuel pressure gauge", "Fuel filter", "Carburetor cleaner"],
         precautions: "Work in a well-ventilated area away from ignition sources.",
-        videoLink: "https://youtu.be/OQtoRWB-Lhg?si=hy-eVm5mN04rWIOJ"
+        videoLink: "https://youtu.be/pnCbE4FQA7I?si=B7_dKdHM7L7oF0RB"
       }
     },
     {
@@ -441,7 +441,7 @@ export const fallbackProblemsByVehicle = {
         ],
         tools: ["Exhaust gasket kit", "Socket set", "High-temp sealant"],
         precautions: "Wear gloves; exhaust components remain hot after engine shutdown.",
-        videoLink: "https://youtu.be/2VhPSU7-Zy0?si=r6W4ZNCXmm7NtzgB"
+        videoLink: "https://youtu.be/QqzGt5Yc9wI?si=G0hJF21vy7HjFTIk"
       }
     },
     {
@@ -460,7 +460,7 @@ export const fallbackProblemsByVehicle = {
         ],
         tools: ["Power steering fluid", "Steering alignment tool", "Socket set"],
         precautions: "Do not force steering if it feels unusually heavy.",
-        videoLink: "https://youtu.be/mDIlwbx0B-s?si=h65f5i1UWzNmEmuY"
+        videoLink: "https://youtu.be/VDHvGEqSoEk?si=BgZA60VQKZ8cKVPI"
       }
     },
     {
@@ -479,7 +479,7 @@ export const fallbackProblemsByVehicle = {
         ],
         tools: ["Multimeter", "Battery load tester", "Replacement battery"],
         precautions: "Check all aftermarket accessories for installation issues.",
-        videoLink: "https://youtu.be/BcGT1bNrsAM?si=kEVbglAB-TKfQG74"
+        videoLink: "https://youtu.be/WbDbY3KHmHg?si=CwRMw9LYq4bSBfZ7"
       }
     }
   ],
@@ -500,7 +500,7 @@ export const fallbackProblemsByVehicle = {
         ],
         tools: ["Coolant", "Radiator flush kit", "Thermostat"],
         precautions: "Do not open a hot radiator cap; steam can cause severe burns.",
-        videoLink: "https://youtu.be/lBslHMW8i_Y?si=-H9I-Cd6HM-HgjEV"
+        videoLink: "https://youtu.be/s--5ft5YiI8?si=2mJvF8wVYQhYL_bN"
       }
     },
     {
@@ -519,7 +519,7 @@ export const fallbackProblemsByVehicle = {
         ],
         tools: ["Jumper cables", "Multimeter", "Replacement battery"],
         precautions: "Never reverse jumper cable connections; check battery terminals for corrosion.",
-        videoLink: "https://youtu.be/VdnkRQF5Cps?si=FW8Sif6Q5JHFw7tF"
+        videoLink: "https://youtu.be/iI1o2hNy2hE?si=CJL25SjBEYWz3bQ_"
       }
     },
     {
@@ -538,7 +538,7 @@ export const fallbackProblemsByVehicle = {
         ],
         tools: ["Jack", "Lug wrench", "Spare tire", "Tire repair kit"],
         precautions: "Do not drive at high speed on a temporary spare; get tire repaired quickly.",
-        videoLink: "https://youtu.be/Bq5To-ZH160?si=wTHyuSJFov1lTmHx"
+        videoLink: "https://youtu.be/jNQBVGPohdc?si=ACWCqU5LOdOo4ERC"
       }
     },
     {
@@ -557,7 +557,7 @@ export const fallbackProblemsByVehicle = {
         ],
         tools: ["Brake fluid", "Brake bleeder kit", "Torque wrench"],
         precautions: "Replace all four brake pads at once for even braking.",
-        videoLink: "https://youtu.be/9CAlqxXv_I8?si=W1sa8MHTkyt1pVW8"
+        videoLink: "https://youtu.be/EpbvfIHJdNw?si=lY0-B_g_sZrUEpEG"
       }
     },
     {
@@ -576,7 +576,7 @@ export const fallbackProblemsByVehicle = {
         ],
         tools: ["Transmission fluid", "Transmission pan gasket", "Socket set"],
         precautions: "Regular transmission servicing prevents costly repairs.",
-        videoLink: "https://youtu.be/WjNbeInU6-4?si=BPA7Fa4gFOrOErkc"
+        videoLink: "https://youtu.be/o690DovjDAc?si=z7hFkQ1SBdOAuF_x"
       }
     },
     {
@@ -595,7 +595,7 @@ export const fallbackProblemsByVehicle = {
         ],
         tools: ["Multimeter", "Alternator replacement unit", "Socket set"],
         precautions: "Alternator replacement requires significant technical knowledge.",
-        videoLink: "https://youtu.be/XC8W9RHGTMI?si=i8PvedtRaGeyKQsi"
+        videoLink: "https://youtu.be/VrIo-lfzxoQ?si=n0OPTCVm39H_8mfF"
       }
     },
     {
@@ -614,7 +614,7 @@ export const fallbackProblemsByVehicle = {
         ],
         tools: ["Spark plug socket", "Spark plug gap tool", "Replacement spark plugs"],
         precautions: "Replace spark plugs every 30,000-100,000 miles depending on type.",
-        videoLink: "https://youtu.be/OQtoRWB-Lhg?si=hy-eVm5mN04rWIOJ"
+        videoLink: "https://youtu.be/aPNTrYMGTIY?si=NQPtAWWy3pQD-Ypw"
       }
     },
     {
@@ -633,7 +633,7 @@ export const fallbackProblemsByVehicle = {
         ],
         tools: ["Radiator stop-leak", "Coolant", "Replacement radiator"],
         precautions: "Do not ignore radiator leaks; they lead to engine damage.",
-        videoLink: "https://youtu.be/2VhPSU7-Zy0?si=r6W4ZNCXmm7NtzgB"
+        videoLink: "https://youtu.be/TViDjN0BezY?si=lk5KSvIJnDN7jyh3"
       }
     },
     {
@@ -652,7 +652,7 @@ export const fallbackProblemsByVehicle = {
         ],
         tools: ["Fuel pressure gauge", "Fuel filter", "Replacement fuel pump"],
         precautions: "Keep fuel tank at least a quarter full to cool the pump.",
-        videoLink: "https://youtu.be/mDIlwbx0B-s?si=h65f5i1UWzNmEmuY"
+        videoLink: "https://youtu.be/BXR2t1YcYoo?si=9WixheFZEiMfhzuI"
       }
     },
     {
@@ -671,7 +671,7 @@ export const fallbackProblemsByVehicle = {
         ],
         tools: ["Multimeter", "Replacement fuses", "Wire connectors"],
         precautions: "Disconnect battery before working on electrical components.",
-        videoLink: "https://youtu.be/BcGT1bNrsAM?si=kEVbglAB-TKfQG74"
+        videoLink: "https://youtu.be/TpZ8ymYYLo4?si=8_HfF1EDK2_5RcsZ"
       }
     }
   ]
