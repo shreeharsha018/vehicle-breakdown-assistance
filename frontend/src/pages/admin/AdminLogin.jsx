@@ -37,8 +37,13 @@ export default function AdminLogin() {
         formData.password
       );
 
-      // Check if user is admin
+      // Check if user is admin - NO EMAIL VERIFICATION REQUIRED FOR ADMINS
       const userDoc = await getDoc(doc(db, 'users', userCredential.user.uid));
+      if (!userDoc.exists()) {
+        await auth.signOut();
+        throw new Error('User data not found. Please contact support.');
+      }
+
       if (!userDoc.data()?.isAdmin) {
         await auth.signOut();
         throw new Error('Admin access denied. You are not an admin.');

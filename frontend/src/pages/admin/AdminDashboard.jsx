@@ -8,7 +8,9 @@ export default function AdminDashboard() {
     totalVehicles: 0,
     totalProblems: 0,
     totalSolutions: 0,
-    totalFeedback: 0
+    totalFeedback: 0,
+    totalAssistanceRequests: 0,
+    pendingAssistanceRequests: 0
   });
   const [loading, setLoading] = useState(true);
 
@@ -19,12 +21,17 @@ export default function AdminDashboard() {
         const problemsSnap = await getDocs(collection(db, 'problems'));
         const solutionsSnap = await getDocs(collection(db, 'solutions'));
         const feedbackSnap = await getDocs(collection(db, 'feedback'));
+        const assistanceSnap = await getDocs(collection(db, 'assistanceRequests'));
+
+        const pendingCount = assistanceSnap.docs.filter(doc => doc.data().status === 'pending').length;
 
         setStats({
           totalVehicles: vehiclesSnap.size,
           totalProblems: problemsSnap.size,
           totalSolutions: solutionsSnap.size,
-          totalFeedback: feedbackSnap.size
+          totalFeedback: feedbackSnap.size,
+          totalAssistanceRequests: assistanceSnap.size,
+          pendingAssistanceRequests: pendingCount
         });
       } catch (error) {
         console.error('Error fetching stats:', error);
@@ -46,6 +53,24 @@ export default function AdminDashboard() {
       </div>
 
       <div className="dashboard-grid">
+        {/* Emergency Assistance Requests - PRIORITY */}
+        <Link to="/admin/assistance-requests" style={{ textDecoration: 'none' }}>
+          <div className="dashboard-card" style={{
+            borderLeft: '4px solid #ff3b30',
+            background: stats.pendingAssistanceRequests > 0 ? '#fff5f5' : undefined
+          }}>
+            <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>🚨</div>
+            <h3>Assistance Requests</h3>
+            <p style={{ fontSize: '2rem', fontWeight: 'bold', color: '#ff3b30' }}>
+              {stats.pendingAssistanceRequests}
+            </p>
+            <p style={{ color: '#ff3b30', fontWeight: '600' }}>Pending Requests</p>
+            <p style={{ fontSize: '0.85rem', color: '#64748b', marginTop: '0.5rem' }}>
+              {stats.totalAssistanceRequests} total
+            </p>
+          </div>
+        </Link>
+
         <Link to="/admin/vehicles" style={{ textDecoration: 'none' }}>
           <div className="dashboard-card">
             <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>🚗</div>

@@ -36,6 +36,7 @@ import ManageVehicles from './pages/admin/ManageVehicles';
 import ManageProblems from './pages/admin/ManageProblems';
 import ManageSolutions from './pages/admin/ManageSolutions';
 import ViewFeedback from './pages/admin/ViewFeedback';
+import ViewAssistanceRequests from './pages/admin/ViewAssistanceRequests';
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -99,7 +100,7 @@ export default function App() {
   }
 
   return (
-    <Router>
+    <Router basename="/vehicle-breakdown-assistance">
       <ScrollToTop />
       <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <Navbar user={user} isAdmin={isAdmin} />
@@ -112,30 +113,34 @@ export default function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <Login />} />
-            <Route path="/register" element={user ? <Navigate to="/dashboard" /> : <Register />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/verify-email" element={<VerifyEmail />} />
 
             {/* Admin Routes */}
             <Route path="/admin/login" element={isAdmin ? <Navigate to="/admin" /> : <AdminLogin />} />
             <Route
               path="/admin"
-              element={<ProtectedRoute isAllowed={isAdmin}><AdminDashboard /></ProtectedRoute>}
+              element={<ProtectedRoute isAllowed={isAdmin} redirectPath="/admin/login"><AdminDashboard /></ProtectedRoute>}
             />
             <Route
               path="/admin/vehicles"
-              element={<ProtectedRoute isAllowed={isAdmin}><ManageVehicles /></ProtectedRoute>}
+              element={<ProtectedRoute isAllowed={isAdmin} redirectPath="/admin/login"><ManageVehicles /></ProtectedRoute>}
             />
             <Route
               path="/admin/problems"
-              element={<ProtectedRoute isAllowed={isAdmin}><ManageProblems /></ProtectedRoute>}
+              element={<ProtectedRoute isAllowed={isAdmin} redirectPath="/admin/login"><ManageProblems /></ProtectedRoute>}
             />
             <Route
               path="/admin/solutions"
-              element={<ProtectedRoute isAllowed={isAdmin}><ManageSolutions /></ProtectedRoute>}
+              element={<ProtectedRoute isAllowed={isAdmin} redirectPath="/admin/login"><ManageSolutions /></ProtectedRoute>}
             />
             <Route
               path="/admin/feedback"
-              element={<ProtectedRoute isAllowed={isAdmin}><ViewFeedback /></ProtectedRoute>}
+              element={<ProtectedRoute isAllowed={isAdmin} redirectPath="/admin/login"><ViewFeedback /></ProtectedRoute>}
+            />
+            <Route
+              path="/admin/assistance-requests"
+              element={<ProtectedRoute isAllowed={isAdmin} redirectPath="/admin/login"><ViewAssistanceRequests /></ProtectedRoute>}
             />
 
             {/* User Routes - Dashboard requires login */}
