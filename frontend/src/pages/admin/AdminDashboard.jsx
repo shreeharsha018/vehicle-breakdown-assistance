@@ -84,23 +84,12 @@ export default function AdminDashboard() {
 
         <Link to="/admin/problems" style={{ textDecoration: 'none' }}>
           <div className="dashboard-card">
-            <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>⚠️</div>
-            <h3>Problems</h3>
+            <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>⚙️</div>
+            <h3>Problems & Solutions</h3>
             <p style={{ fontSize: '2rem', fontWeight: 'bold', color: '#2563eb' }}>
               {stats.totalProblems}
             </p>
-            <p>Manage problem categories</p>
-          </div>
-        </Link>
-
-        <Link to="/admin/solutions" style={{ textDecoration: 'none' }}>
-          <div className="dashboard-card">
-            <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>💡</div>
-            <h3>Solutions</h3>
-            <p style={{ fontSize: '2rem', fontWeight: 'bold', color: '#2563eb' }}>
-              {stats.totalSolutions}
-            </p>
-            <p>Manage solutions and videos</p>
+            <p>Manage breakdown problems and solutions</p>
           </div>
         </Link>
 
@@ -119,14 +108,20 @@ export default function AdminDashboard() {
       <div className="card" style={{ marginTop: '3rem', padding: '2rem' }}>
         <h2>Quick Actions</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginTop: '1rem' }}>
+          <Link to="/admin/import-data" className="btn" style={{ background: '#f59e0b', color: 'white' }}>
+            📦 Import Existing Data
+          </Link>
+          <Link to="/admin/users" className="btn btn-primary">
+            👥 View All Users
+          </Link>
+          <Link to="/admin/assistance-requests" className="btn" style={{ background: '#ff3b30', color: 'white' }}>
+            🚨 View Requests
+          </Link>
           <Link to="/admin/vehicles" className="btn btn-primary">
             + Add Vehicle
           </Link>
           <Link to="/admin/problems" className="btn btn-primary">
-            + Add Problem
-          </Link>
-          <Link to="/admin/solutions" className="btn btn-primary">
-            + Add Solution
+            ⚙️ Manage Problems & Solutions
           </Link>
           <Link to="/admin/feedback" className="btn btn-primary">
             View Feedback

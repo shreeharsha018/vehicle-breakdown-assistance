@@ -12,9 +12,11 @@ export default function Navbar({ user, isAdmin }) {
     try {
       await signOut(auth);
       setMobileMenuOpen(false);
-      navigate('/');
+      // Force reload to clear all state
+      window.location.href = '/';
     } catch (error) {
       console.error('Error logging out:', error);
+      alert('Failed to logout. Please try again.');
     }
   };
 
@@ -44,9 +46,10 @@ export default function Navbar({ user, isAdmin }) {
                 <>
                   <li><Link to="/admin" onClick={closeMobileMenu}>Dashboard</Link></li>
                   <li><Link to="/admin/vehicles" onClick={closeMobileMenu}>Vehicles</Link></li>
-                  <li><Link to="/admin/problems" onClick={closeMobileMenu}>Problems</Link></li>
-                  <li><Link to="/admin/solutions" onClick={closeMobileMenu}>Solutions</Link></li>
+                  <li><Link to="/admin/problems" onClick={closeMobileMenu}>Problems & Solutions</Link></li>
                   <li><Link to="/admin/feedback" onClick={closeMobileMenu}>Feedback</Link></li>
+                  <li><Link to="/admin/users" onClick={closeMobileMenu}>Users</Link></li>
+                  <li><Link to="/admin/assistance-requests" onClick={closeMobileMenu}>Assistance Requests</Link></li>
                 </>
               ) : (
                 <>

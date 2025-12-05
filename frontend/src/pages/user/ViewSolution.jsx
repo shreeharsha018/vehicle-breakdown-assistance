@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getDoc, doc, addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../../config/firebase";
@@ -16,6 +16,9 @@ export default function ViewSolution() {
   const [locationError, setLocationError] = useState('');
   const navigate = useNavigate();
   const fallbackProblem = fallbackProblemIndex[problemId];
+
+  // Use ref to prevent duplicate tracking in development mode
+  const hasTrackedView = useRef(false);
 
   useEffect(() => {
     const fetchSolution = async () => {
@@ -59,8 +62,13 @@ export default function ViewSolution() {
     };
 
     fetchSolution();
-    captureViewLocation();
-  }, [problemId, fallbackProblem]);
+
+    // Only track view once per mount
+    if (!hasTrackedView.current) {
+      captureViewLocation();
+      hasTrackedView.current = true;
+    }
+  }, [problemId]); // Only depend on problemId, not fallbackProblem
 
   const captureViewLocation = async () => {
     try {
