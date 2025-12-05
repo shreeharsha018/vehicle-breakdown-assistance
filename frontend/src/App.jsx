@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './config/firebase';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from './config/firebase';
 
 // Components
@@ -10,11 +10,16 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
 import Loading from './components/Loading';
+import ScrollToTop from './components/ScrollToTop';
 
 // Pages
 import Home from './pages/Home';
+import About from './pages/About';
+import Services from './pages/Services';
+import Contact from './pages/Contact';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
+import VerifyEmail from './pages/auth/VerifyEmail';
 
 // User Pages
 import Dashboard from './pages/user/Dashboard';
@@ -31,6 +36,7 @@ import ManageVehicles from './pages/admin/ManageVehicles';
 import ManageProblems from './pages/admin/ManageProblems';
 import ManageSolutions from './pages/admin/ManageSolutions';
 import ViewFeedback from './pages/admin/ViewFeedback';
+import ViewAssistanceRequests from './pages/admin/ViewAssistanceRequests';
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -55,69 +61,107 @@ export default function App() {
     return () => unsubscribe();
   }, []);
 
+  // Track user activity for session management
+  useEffect(() => {
+    if (!user) return;
+
+    const updateActivity = async () => {
+      try {
+        await updateDoc(doc(db, 'users', user.uid), {
+          lastActive: new Date()
+        });
+      } catch (error) {
+        console.error('Error updating activity:', error);
+      }
+    };
+
+    // Update activity every 5 minutes
+    const activityInterval = setInterval(updateActivity, 5 * 60 * 1000);
+
+    // Update on user interaction
+    const handleActivity = () => {
+      updateActivity();
+    };
+
+    window.addEventListener('click', handleActivity);
+    window.addEventListener('keypress', handleActivity);
+    window.addEventListener('scroll', handleActivity);
+
+    return () => {
+      clearInterval(activityInterval);
+      window.removeEventListener('click', handleActivity);
+      window.removeEventListener('keypress', handleActivity);
+      window.removeEventListener('scroll', handleActivity);
+    };
+  }, [user]);
+
   if (loading) {
     return <Loading />;
   }
 
   return (
-    <Router>
+    <Router basename="/vehicle-breakdown-assistance">
+      <ScrollToTop />
       <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <Navbar user={user} isAdmin={isAdmin} />
-        
+
         <main style={{ flex: 1 }}>
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <Login />} />
-            <Route path="/register" element={user ? <Navigate to="/dashboard" /> : <Register />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/verify-email" element={<VerifyEmail />} />
 
             {/* Admin Routes */}
             <Route path="/admin/login" element={isAdmin ? <Navigate to="/admin" /> : <AdminLogin />} />
-            <Route 
-              path="/admin" 
-              element={<ProtectedRoute isAllowed={isAdmin}><AdminDashboard /></ProtectedRoute>} 
+            <Route
+              path="/admin"
+              element={<ProtectedRoute isAllowed={isAdmin} redirectPath="/admin/login"><AdminDashboard /></ProtectedRoute>}
             />
-            <Route 
-              path="/admin/vehicles" 
-              element={<ProtectedRoute isAllowed={isAdmin}><ManageVehicles /></ProtectedRoute>} 
+            <Route
+              path="/admin/vehicles"
+              element={<ProtectedRoute isAllowed={isAdmin} redirectPath="/admin/login"><ManageVehicles /></ProtectedRoute>}
             />
-            <Route 
-              path="/admin/problems" 
-              element={<ProtectedRoute isAllowed={isAdmin}><ManageProblems /></ProtectedRoute>} 
+            <Route
+              path="/admin/problems"
+              element={<ProtectedRoute isAllowed={isAdmin} redirectPath="/admin/login"><ManageProblems /></ProtectedRoute>}
             />
-            <Route 
-              path="/admin/solutions" 
-              element={<ProtectedRoute isAllowed={isAdmin}><ManageSolutions /></ProtectedRoute>} 
+            <Route
+              path="/admin/solutions"
+              element={<ProtectedRoute isAllowed={isAdmin} redirectPath="/admin/login"><ManageSolutions /></ProtectedRoute>}
             />
-            <Route 
-              path="/admin/feedback" 
-              element={<ProtectedRoute isAllowed={isAdmin}><ViewFeedback /></ProtectedRoute>} 
+            <Route
+              path="/admin/feedback"
+              element={<ProtectedRoute isAllowed={isAdmin} redirectPath="/admin/login"><ViewFeedback /></ProtectedRoute>}
+            />
+            <Route
+              path="/admin/assistance-requests"
+              element={<ProtectedRoute isAllowed={isAdmin} redirectPath="/admin/login"><ViewAssistanceRequests /></ProtectedRoute>}
             />
 
-            {/* User Routes */}
-            <Route 
-              path="/dashboard" 
-              element={<ProtectedRoute isAllowed={!!user && !isAdmin}><Dashboard /></ProtectedRoute>} 
+            {/* User Routes - Dashboard requires login */}
+            <Route
+              path="/dashboard"
+              element={<ProtectedRoute isAllowed={!!user && !isAdmin}><Dashboard /></ProtectedRoute>}
             />
-            <Route 
-              path="/select-vehicle" 
-              element={<ProtectedRoute isAllowed={!!user && !isAdmin}><SelectVehicle /></ProtectedRoute>} 
+
+            {/* Help Routes - Public access for emergency help */}
+            <Route path="/select-vehicle" element={<SelectVehicle />} />
+            <Route path="/problems/:vehicleType" element={<ViewProblems />} />
+            <Route path="/solution/:problemId" element={<ViewSolution />} />
+
+            {/* Feedback Routes - Require login to submit/view feedback */}
+            <Route
+              path="/feedback"
+              element={<ProtectedRoute isAllowed={!!user && !isAdmin}><Feedback /></ProtectedRoute>}
             />
-            <Route 
-              path="/problems/:vehicleType" 
-              element={<ProtectedRoute isAllowed={!!user && !isAdmin}><ViewProblems /></ProtectedRoute>} 
-            />
-            <Route 
-              path="/solution/:problemId" 
-              element={<ProtectedRoute isAllowed={!!user && !isAdmin}><ViewSolution /></ProtectedRoute>} 
-            />
-            <Route 
-              path="/feedback" 
-              element={<ProtectedRoute isAllowed={!!user && !isAdmin}><Feedback /></ProtectedRoute>} 
-            />
-            <Route 
-              path="/all-feedback" 
-              element={<ProtectedRoute isAllowed={!!user && !isAdmin}><ViewAllFeedback /></ProtectedRoute>} 
+            <Route
+              path="/all-feedback"
+              element={<ProtectedRoute isAllowed={!!user && !isAdmin}><ViewAllFeedback /></ProtectedRoute>}
             />
 
             {/* Catch all */}

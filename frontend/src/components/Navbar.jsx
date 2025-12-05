@@ -1,62 +1,71 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { auth } from '../config/firebase';
-import { signOut } from 'firebase/auth';
 import { useState } from 'react';
+import { signOut } from 'firebase/auth';
+import { auth } from '../config/firebase';
 import './Navbar.css';
 
 export default function Navbar({ user, isAdmin }) {
   const navigate = useNavigate();
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleLogout = async () => {
     try {
       await signOut(auth);
+      setMobileMenuOpen(false);
       navigate('/');
-      setMenuOpen(false);
     } catch (error) {
-      console.error('Logout error:', error);
+      console.error('Error logging out:', error);
     }
+  };
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
   };
 
   return (
     <nav className="navbar">
       <div className="container navbar-container">
-        <Link to="/" className="nav-brand">
-          🚗 VBA
+        <Link to="/" className="nav-brand" onClick={closeMobileMenu}>
+          🚗 Vehicle Breakdown Assistance
         </Link>
-        
-        <button 
-          className="menu-toggle"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          ☰
+
+        <button className="menu-toggle" onClick={toggleMobileMenu}>
+          {mobileMenuOpen ? '✕' : '☰'}
         </button>
 
-        <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
-          <li><Link to="/">Home</Link></li>
-          
-          {isAdmin ? (
+        <ul className={`nav-links ${mobileMenuOpen ? 'active' : ''}`}>
+          {user ? (
             <>
-              <li><Link to="/admin">Dashboard</Link></li>
-              <li><Link to="/admin/vehicles">Vehicles</Link></li>
-              <li><Link to="/admin/problems">Problems</Link></li>
-              <li><Link to="/admin/solutions">Solutions</Link></li>
-              <li><Link to="/admin/feedback">Feedback</Link></li>
-              <li><button onClick={handleLogout} className="btn-logout">Logout</button></li>
-            </>
-          ) : user ? (
-            <>
-              <li><Link to="/dashboard">Dashboard</Link></li>
-              <li><Link to="/select-vehicle">Get Help</Link></li>
-              <li><Link to="/feedback">Give Feedback</Link></li>
-              <li><Link to="/all-feedback">View Feedback</Link></li>
-              <li><button onClick={handleLogout} className="btn-logout">Logout</button></li>
+              {isAdmin ? (
+                <>
+                  <li><Link to="/admin" onClick={closeMobileMenu}>Dashboard</Link></li>
+                  <li><Link to="/admin/vehicles" onClick={closeMobileMenu}>Vehicles</Link></li>
+                  <li><Link to="/admin/problems" onClick={closeMobileMenu}>Problems</Link></li>
+                  <li><Link to="/admin/solutions" onClick={closeMobileMenu}>Solutions</Link></li>
+                  <li><Link to="/admin/feedback" onClick={closeMobileMenu}>Feedback</Link></li>
+                </>
+              ) : (
+                <>
+                  <li><Link to="/dashboard" onClick={closeMobileMenu}>Dashboard</Link></li>
+                  <li><Link to="/select-vehicle" onClick={closeMobileMenu}>Get Help</Link></li>
+                </>
+              )}
+              <li>
+                <button onClick={handleLogout} className="btn-logout">
+                  Logout
+                </button>
+              </li>
             </>
           ) : (
             <>
-              <li><Link to="/login">Login</Link></li>
-              <li><Link to="/register">Register</Link></li>
-              <li><Link to="/admin/login">Admin Login</Link></li>
+              <li><Link to="/login" onClick={closeMobileMenu}>Login</Link></li>
+              <li><Link to="/register" onClick={closeMobileMenu}>
+                Register
+              </Link></li>
             </>
           )}
         </ul>

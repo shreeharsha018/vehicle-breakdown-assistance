@@ -1,27 +1,22 @@
 {
   "name": "vehicle-breakdown-assistance",
   "version": "1.0.0",
-  "description": "24/7 Vehicle Breakdown Assistance Platform - Full Stack Application",
+  "description": "24/7 Vehicle Breakdown Assistance Platform - Firebase + React Application",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"npm run dev -w backend\" \"npm run dev -w frontend\"",
-    "build": "npm run build -w frontend",
-    "start": "npm start -w backend",
-    "test": "npm test -w backend",
-    "lint": "eslint . --ext .js"
-  },
-  "workspaces": [
-    "backend",
-    "admin"
-  ],
-  "devDependencies": {
-    "concurrently": "^8.2.0",
-    "eslint": "^8.49.0"
+    "dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "preview": "cd frontend && npm run preview",
+    "install-deps": "cd frontend && npm install"
   },
   "keywords": [
     "vehicle",
     "breakdown",
     "assistance",
-    "roadside"
-  ]
+    "roadside",
+    "firebase",
+    "react"
+  ],
+  "author": "",
+  "license": "MIT"
 }

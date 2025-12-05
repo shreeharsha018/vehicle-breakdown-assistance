@@ -1,0 +1,97 @@
+/* Emergency Hero Styles */
+.emergency-hero {
+    background: linear-gradient(135deg, #ff6b00 0%, #ff3b30 100%);
+    color: white !important;
+    padding: 5rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.emergency-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(45deg,
+            transparent,
+            transparent 10px,
+            rgba(255, 255, 255, 0.03) 10px,
+            rgba(255, 255, 255, 0.03) 20px);
+    pointer-events: none;
+}
+
+.emergency-badge {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    animation: pulse-badge 2s infinite;
+}
+
+@keyframes pulse-badge {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+    }
+}
+
+.emergency-hero h1 {
+    color: white !important;
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    font-weight: 800;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    line-height: 1.1;
+}
+
+.hero-lead {
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-size: 1.5rem !important;
+    font-weight: 600;
+    margin-bottom: 0.5rem !important;
+}
+
+.emergency-hero .hero-subtitle {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-size: 1.1rem !important;
+    margin-bottom: 2rem !important;
+}
+
+.emergency-hero .hero-buttons {
+    margin-top: 2rem;
+    gap: 1rem;
+}
+
+.hero-note {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 1rem !important;
+    margin-top: 1.5rem !important;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .emergency-hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero-lead {
+        font-size: 1.1rem !important;
+    }
+
+    .emergency-hero .hero-subtitle {
+        font-size: 0.95rem !important;
+    }
+}

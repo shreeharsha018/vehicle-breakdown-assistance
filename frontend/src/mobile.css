@@ -1,0 +1,70 @@
+/* Mobile viewport fix */
+@viewport {
+    width: device-width;
+}
+
+/* Prevent horizontal scroll on mobile */
+html {
+    overflow-x: hidden;
+}
+
+body {
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+
+    /* Touch device styles */
+    button,
+    a,
+    .btn {
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(255, 107, 0, 0.2);
+    }
+
+    /* Larger touch targets */
+    .nav-links a,
+    .nav-links button {
+        padding: 0.75rem 1rem;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+
+    /* Remove hover effects on touch devices */
+    .dashboard-card:hover,
+    .feature-card:hover,
+    .problem-card:hover,
+    .btn:hover {
+        transform: none;
+    }
+}
+
+/* Landscape mode on mobile */
+@media (max-width: 896px) and (orientation: landscape) {
+    .hero {
+        padding: 1.5rem 0;
+    }
+
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+
+    .emergency-hero {
+        padding: 2rem 0;
+    }
+
+    .navbar-container {
+        height: 50px;
+    }
+}
+
+/* iOS safe area support */
+@supports (padding: max(0px)) {
+    body {
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+    }
+}

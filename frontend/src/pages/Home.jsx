@@ -1,20 +1,46 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { auth } from '../config/firebase';
+import { useEffect, useState } from 'react';
 import './pages.css';
+import './emergency-styles.css';
 
 export default function Home() {
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleEmergencyHelp = () => {
+    // Allow everyone to access help, even without login
+    navigate('/select-vehicle');
+  };
+
   return (
     <div>
       {/* Hero Section */}
-      <section className="hero">
+      <section className="hero emergency-hero">
         <div className="container">
           <div className="hero-content">
-            <h1>Vehicle Breakdown Assistance</h1>
-            <p>Get instant help for your vehicle problems 24/7</p>
-            <p className="hero-subtitle">Expert solutions with video tutorials for all vehicle types</p>
+            <div className="emergency-badge">🚨 24/7 Emergency Support</div>
+            <h1>Vehicle Breakdown?<br />We're Here to Help!</h1>
+            <p className="hero-lead">Immediate assistance for all vehicle emergencies</p>
+            <p className="hero-subtitle">Expert solutions with step-by-step video tutorials</p>
             <div className="hero-buttons">
-              <Link to="/register" className="btn btn-primary btn-lg">Get Started</Link>
-              <Link to="/login" className="btn btn-secondary btn-lg">Sign In</Link>
+              <button onClick={handleEmergencyHelp} className="btn btn-emergency btn-lg">
+                🆘 Get Help Now
+              </button>
+              {!user && (
+                <>
+                  <Link to="/register" className="btn btn-secondary btn-lg">Create Account</Link>
+                </>
+              )}
             </div>
+            <p className="hero-note">⚡ Fast • 🎯 Reliable • 📍 GPS Enabled</p>
           </div>
         </div>
       </section>

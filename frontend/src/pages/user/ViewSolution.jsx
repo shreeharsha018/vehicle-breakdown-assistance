@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getDoc, doc } from "firebase/firestore";
+import { getDoc, doc, addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../../config/firebase";
 import { fallbackProblemIndex } from "./ViewProblems";
+import { getCurrentLocation } from "../../utils/locationUtils";
 
 export default function ViewSolution() {
   const { problemId } = useParams();
@@ -10,6 +11,9 @@ export default function ViewSolution() {
   const [problem, setProblem] = useState(null);
   const [loading, setLoading] = useState(true);
   const [userLocation, setUserLocation] = useState(null);
+  const [requestingAssistance, setRequestingAssistance] = useState(false);
+  const [assistanceRequested, setAssistanceRequested] = useState(false);
+  const [locationError, setLocationError] = useState('');
   const navigate = useNavigate();
   const fallbackProblem = fallbackProblemIndex[problemId];
 
@@ -55,23 +59,91 @@ export default function ViewSolution() {
     };
 
     fetchSolution();
-    getLocation();
+    captureViewLocation();
   }, [problemId, fallbackProblem]);
 
-  const getLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setUserLocation({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-            timestamp: new Date()
-          });
+  const captureViewLocation = async () => {
+    try {
+      const location = await getCurrentLocation();
+      setUserLocation(location);
+
+      // Save view-solution request to track user activity
+      if (auth.currentUser) {
+        const userDoc = await getDoc(doc(db, 'users', auth.currentUser.uid));
+        const userData = userDoc.data();
+
+        await addDoc(collection(db, 'assistanceRequests'), {
+          userId: auth.currentUser.uid,
+          userName: userData?.fullName || 'Unknown',
+          userEmail: userData?.email || auth.currentUser.email,
+          userPhone: userData?.phone || 'Not provided',
+          problemId: problemId,
+          problemTitle: problem?.title || fallbackProblem?.title || 'Unknown Problem',
+          vehicleType: problem?.vehicleType || fallbackProblem?.vehicleType || 'Unknown',
+          location: {
+            latitude: location.latitude,
+            longitude: location.longitude
+          },
+          requestType: 'view-solution',
+          status: 'pending',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          notes: ''
+        });
+      }
+    } catch (error) {
+      console.log("Location capture error:", error.message);
+      setLocationError(error.message);
+    }
+  };
+
+  const requestEmergencyAssistance = async () => {
+    if (!auth.currentUser) {
+      alert('Please login to request assistance');
+      navigate('/login');
+      return;
+    }
+
+    setRequestingAssistance(true);
+
+    try {
+      let location = userLocation;
+
+      // If location not captured yet, try again
+      if (!location) {
+        location = await getCurrentLocation();
+        setUserLocation(location);
+      }
+
+      const userDoc = await getDoc(doc(db, 'users', auth.currentUser.uid));
+      const userData = userDoc.data();
+
+      await addDoc(collection(db, 'assistanceRequests'), {
+        userId: auth.currentUser.uid,
+        userName: userData?.fullName || 'Unknown',
+        userEmail: userData?.email || auth.currentUser.email,
+        userPhone: userData?.phone || 'Not provided',
+        problemId: problemId,
+        problemTitle: problem?.title || 'Unknown Problem',
+        vehicleType: problem?.vehicleType || 'Unknown',
+        location: {
+          latitude: location.latitude,
+          longitude: location.longitude
         },
-        (error) => {
-          console.log("Location access denied:", error);
-        }
-      );
+        requestType: 'emergency-assistance',
+        status: 'pending',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        notes: ''
+      });
+
+      setAssistanceRequested(true);
+      alert('🚨 Emergency assistance requested! Our team will contact you shortly at ' + (userData?.phone || 'your registered number'));
+    } catch (error) {
+      console.error('Error requesting assistance:', error);
+      alert('Failed to request assistance: ' + error.message);
+    } finally {
+      setRequestingAssistance(false);
     }
   };
 
@@ -101,9 +173,68 @@ export default function ViewSolution() {
       <div className="solution-header">
         <h1>{problem.title}</h1>
         <p style={{ color: "#64748b", marginTop: "0.5rem" }}>{problem.description}</p>
+
+        {/* Emergency Assistance Banner */}
+        <div style={{
+          marginTop: '1.5rem',
+          padding: '1.5rem',
+          background: 'linear-gradient(135deg, #ff3b30 0%, #ff6b00 100%)',
+          borderRadius: '12px',
+          color: 'white',
+          boxShadow: '0 4px 12px rgba(255, 59, 48, 0.3)'
+        }}>
+          <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>🚨</div>
+          <h3 style={{ margin: '0 0 0.5rem 0', color: 'white' }}>Need Immediate Help?</h3>
+          <p style={{ margin: '0 0 1rem 0', fontSize: '0.95rem', opacity: 0.95 }}>
+            Can't fix it yourself? Our team can dispatch emergency assistance to your location.
+          </p>
+          {assistanceRequested ? (
+            <div style={{
+              background: 'rgba(255,255,255,0.2)',
+              padding: '1rem',
+              borderRadius: '8px',
+              border: '2px solid rgba(255,255,255,0.5)'
+            }}>
+              <strong>✅ Assistance Requested!</strong>
+              <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem' }}>
+                Our team will contact you shortly. Keep your phone nearby.
+              </p>
+            </div>
+          ) : (
+            <button
+              onClick={requestEmergencyAssistance}
+              disabled={requestingAssistance}
+              style={{
+                width: '100%',
+                padding: '1rem',
+                background: 'white',
+                color: '#ff3b30',
+                border: 'none',
+                borderRadius: '8px',
+                fontSize: '1.1rem',
+                fontWeight: '700',
+                cursor: requestingAssistance ? 'not-allowed' : 'pointer',
+                opacity: requestingAssistance ? 0.7 : 1,
+                transition: 'all 0.2s',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+              }}
+              onMouseOver={(e) => !requestingAssistance && (e.target.style.transform = 'translateY(-2px)')}
+              onMouseOut={(e) => (e.target.style.transform = 'translateY(0)')}
+            >
+              {requestingAssistance ? '📡 Requesting...' : '🆘 Request Emergency Assistance'}
+            </button>
+          )}
+        </div>
+
         {userLocation && (
-          <p style={{ fontSize: "0.9rem", color: "#999", marginTop: "1rem" }}>
-            📍 Location captured: {userLocation.latitude.toFixed(4)}, {userLocation.longitude.toFixed(4)}
+          <p style={{ fontSize: "0.85rem", color: "#10b981", marginTop: "1rem", background: '#f0fdf4', padding: '0.75rem', borderRadius: '8px', border: '1px solid #86efac' }}>
+            ✅ Location captured: {userLocation.latitude.toFixed(4)}, {userLocation.longitude.toFixed(4)}
+          </p>
+        )}
+
+        {locationError && (
+          <p style={{ fontSize: "0.85rem", color: "#ef4444", marginTop: "1rem", background: '#fef2f2', padding: '0.75rem', borderRadius: '8px', border: '1px solid #fca5a5' }}>
+            ⚠️ {locationError}
           </p>
         )}
       </div>
@@ -167,7 +298,7 @@ export default function ViewSolution() {
         </div>
       </div>
 
-      <div style={{ marginTop: "2rem", display: "flex", gap: "1rem", justifyContent: "center" }}>
+      <div style={{ marginTop: "2rem", display: "flex", gap: "1rem", justifyContent: "center", flexWrap: 'wrap' }}>
         <button onClick={() => navigate(-1)} className="btn btn-secondary">
           ← Back
         </button>

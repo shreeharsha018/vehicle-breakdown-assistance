@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 import { setDoc, doc } from 'firebase/firestore';
 import { auth, db } from '../../config/firebase';
 
@@ -50,6 +50,9 @@ export default function Register() {
         formData.password
       );
 
+      // Send email verification
+      await sendEmailVerification(userCredential.user);
+
       // Save user data in Firestore
       await setDoc(doc(db, 'users', userCredential.user.uid), {
         fullName: formData.fullName,
@@ -57,10 +60,12 @@ export default function Register() {
         phone: formData.phone,
         isAdmin: false,
         createdAt: new Date(),
-        location: null
+        location: null,
+        emailVerified: false
       });
 
-      navigate('/dashboard');
+      // Redirect to verify email page
+      navigate('/verify-email');
     } catch (err) {
       setError(err.message);
     } finally {

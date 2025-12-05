@@ -13,7 +13,7 @@ export default function SelectVehicle() {
     {
       id: '3-wheeler',
       name: '3-Wheeler',
-      icon: '🛵',
+      icon: '🛺',
       description: 'Auto Rickshaw'
     },
     {

@@ -59,10 +59,73 @@ export default function Dashboard() {
           </div>
         </Link>
 
-        <div className="dashboard-card">
-          <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>📱</div>
-          <h3>Your Phone</h3>
-          <p>{user?.phone}</p>
+        <div
+          className="dashboard-card emergency-card"
+          style={{
+            background: 'linear-gradient(135deg, #ff3b30 0%, #dc2626 100%)',
+            color: 'white',
+            cursor: 'default',
+            border: 'none'
+          }}
+        >
+          <div style={{
+            fontSize: '2.5rem',
+            marginBottom: '1rem',
+            background: 'transparent'
+          }}>🚨</div>
+          <h3 style={{ color: 'white', marginBottom: '1rem' }}>Emergency Contacts</h3>
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '0.75rem',
+            fontSize: '0.95rem'
+          }}>
+            <a
+              href="tel:100"
+              style={{
+                color: 'white',
+                textDecoration: 'none',
+                padding: '0.5rem',
+                background: 'rgba(255,255,255,0.2)',
+                borderRadius: '6px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem'
+              }}
+            >
+              🚓 Police: 100
+            </a>
+            <a
+              href="tel:108"
+              style={{
+                color: 'white',
+                textDecoration: 'none',
+                padding: '0.5rem',
+                background: 'rgba(255,255,255,0.2)',
+                borderRadius: '6px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem'
+              }}
+            >
+              🚑 Ambulance: 108
+            </a>
+            <a
+              href="tel:1073"
+              style={{
+                color: 'white',
+                textDecoration: 'none',
+                padding: '0.5rem',
+                background: 'rgba(255,255,255,0.2)',
+                borderRadius: '6px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem'
+              }}
+            >
+              🚗 Road Helpline: 1073
+            </a>
+          </div>
         </div>
       </div>
     </div>
