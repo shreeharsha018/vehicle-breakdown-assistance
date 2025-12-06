@@ -3,6 +3,7 @@ import { auth } from '../../config/firebase';
 import { getDoc, doc } from 'firebase/firestore';
 import { db } from '../../config/firebase';
 import { Link } from 'react-router-dom';
+import ChatWidget from '../../components/AIChat/ChatWidget';
 
 export default function Dashboard() {
   const [user, setUser] = useState(null);
@@ -56,6 +57,18 @@ export default function Dashboard() {
             <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>⭐</div>
             <h3>View Feedback</h3>
             <p>Read feedback from other users in the community.</p>
+          </div>
+        </Link>
+
+        <Link to="/find-garage" style={{ textDecoration: 'none' }}>
+          <div className="dashboard-card" style={{
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            color: 'white',
+            border: 'none'
+          }}>
+            <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>🗺️</div>
+            <h3>Find Garage</h3>
+            <p>Locate nearby repair shops based on your vehicle type</p>
           </div>
         </Link>
 
@@ -127,7 +140,43 @@ export default function Dashboard() {
             </a>
           </div>
         </div>
+
+        <div className="dashboard-card ai-card" style={{
+          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          color: 'white',
+          gridColumn: 'span 2',
+          cursor: 'default',
+          border: 'none'
+        }}>
+          <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🤖</div>
+          <h3 style={{ color: 'white', marginBottom: '0.5rem' }}>AI Diagnostic Assistant</h3>
+          <p style={{ color: 'rgba(255,255,255,0.9)', marginBottom: '1.5rem' }}>
+            Not sure what's wrong? Describe your problem naturally and let AI help diagnose the issue!
+          </p>
+          <div style={{
+            display: 'flex',
+            gap: '1rem',
+            flexWrap: 'wrap',
+            fontSize: '0.9rem'
+          }}>
+            <span style={{ background: 'rgba(255,255,255,0.2)', padding: '0.4rem 0.8rem', borderRadius: '12px' }}>
+              💬 Natural language understanding
+            </span>
+            <span style={{ background: 'rgba(255,255,255,0.2)', padding: '0.4rem 0.8rem', borderRadius: '12px' }}>
+              🎯 Accurate  diagnostics
+            </span>
+            <span style={{ background: 'rgba(255,255,255,0.2)', padding: '0.4rem 0.8rem', borderRadius: '12px' }}>
+              🔧 Step-by-step guidance
+            </span>
+          </div>
+          <p style={{ fontSize: '0.85rem', marginTop: '1rem', opacity: 0.8 }}>
+            Click the chat button below to start 👇
+          </p>
+        </div>
       </div>
+
+      {/* AI Chat Widget - Temporarily disabled due to API issues */}
+      {/* <ChatWidget mode="diagnostic" /> */}
     </div>
   );
 }

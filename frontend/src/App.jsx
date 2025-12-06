@@ -28,6 +28,8 @@ import ViewProblems from './pages/user/ViewProblems';
 import ViewSolution from './pages/user/ViewSolution';
 import Feedback from './pages/user/Feedback';
 import ViewAllFeedback from './pages/user/ViewAllFeedback';
+import FindGarage from './pages/user/FindGarage';
+import RegisterGarage from './pages/RegisterGarage';
 
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
@@ -39,6 +41,7 @@ import ViewAssistanceRequests from './pages/admin/ViewAssistanceRequests';
 import ViewUsers from './pages/admin/ViewUsers';
 import ViewUserDetails from './pages/admin/ViewUserDetails';
 import ImportFallbackData from './pages/admin/ImportFallbackData';
+import ManageGarages from './pages/admin/ManageGarages';
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -117,6 +120,10 @@ export default function App() {
             <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/verify-email" element={<VerifyEmail />} />
+            <Route path="/feedback" element={<Feedback />} />
+            <Route path="/all-feedback" element={<ViewAllFeedback />} />
+            <Route path="/find-garage" element={<FindGarage />} />
+            <Route path="/register-garage" element={<RegisterGarage />} />
 
             {/* Admin Routes */}
             <Route path="/admin/login" element={isAdmin ? <Navigate to="/admin" /> : <AdminLogin />} />
@@ -131,6 +138,10 @@ export default function App() {
             <Route
               path="/admin/problems"
               element={<ProtectedRoute isAllowed={isAdmin} redirectPath="/admin/login"><ManageProblemsAndSolutions /></ProtectedRoute>}
+            />
+            <Route
+              path="/admin/garages"
+              element={<ProtectedRoute isAllowed={isAdmin} redirectPath="/admin/login"><ManageGarages /></ProtectedRoute>}
             />
             <Route
               path="/admin/feedback"
