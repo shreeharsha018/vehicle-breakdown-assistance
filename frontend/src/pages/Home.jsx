@@ -80,6 +80,11 @@ export default function Home() {
               <h3>Quick Solutions</h3>
               <p>Fast, reliable, and practical solutions to get you back on the road quickly.</p>
             </div>
+            <div className="feature-card">
+              <div className="feature-icon">🗺️</div>
+              <h3>Find Garage</h3>
+              <p>Locate nearby repair shops based on your vehicle type with GPS directions.</p>
+            </div>
           </div>
         </div>
       </section>

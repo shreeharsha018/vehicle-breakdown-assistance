@@ -47,6 +47,7 @@ export default function Navbar({ user, isAdmin }) {
                   <li><Link to="/admin" onClick={closeMobileMenu}>Dashboard</Link></li>
                   <li><Link to="/admin/vehicles" onClick={closeMobileMenu}>Vehicles</Link></li>
                   <li><Link to="/admin/problems" onClick={closeMobileMenu}>Problems & Solutions</Link></li>
+                  <li><Link to="/admin/garages" onClick={closeMobileMenu}>Manage Garages</Link></li>
                   <li><Link to="/admin/feedback" onClick={closeMobileMenu}>Feedback</Link></li>
                   <li><Link to="/admin/users" onClick={closeMobileMenu}>Users</Link></li>
                   <li><Link to="/admin/assistance-requests" onClick={closeMobileMenu}>Assistance Requests</Link></li>
@@ -55,6 +56,7 @@ export default function Navbar({ user, isAdmin }) {
                 <>
                   <li><Link to="/dashboard" onClick={closeMobileMenu}>Dashboard</Link></li>
                   <li><Link to="/select-vehicle" onClick={closeMobileMenu}>Get Help</Link></li>
+                  <li><Link to="/find-garage" onClick={closeMobileMenu}>Find Garage</Link></li>
                 </>
               )}
               <li>

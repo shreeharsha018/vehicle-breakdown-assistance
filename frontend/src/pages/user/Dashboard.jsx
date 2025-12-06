@@ -60,6 +60,18 @@ export default function Dashboard() {
           </div>
         </Link>
 
+        <Link to="/find-garage" style={{ textDecoration: 'none' }}>
+          <div className="dashboard-card" style={{
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            color: 'white',
+            border: 'none'
+          }}>
+            <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>🗺️</div>
+            <h3>Find Garage</h3>
+            <p>Locate nearby repair shops based on your vehicle type</p>
+          </div>
+        </Link>
+
         <div
           className="dashboard-card emergency-card"
           style={{
@@ -163,7 +175,8 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <ChatWidget mode="diagnostic" />
+      {/* AI Chat Widget - Temporarily disabled due to API issues */}
+      {/* <ChatWidget mode="diagnostic" /> */}
     </div>
   );
 }

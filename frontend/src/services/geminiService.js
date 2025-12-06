@@ -6,7 +6,7 @@ const AI_CONFIG = {
         temperature: 0.7,
         topP: 0.95,
         topK: 40,
-        maxOutputTokens: 1024,
+        maxOutputTokens: 2048,
     },
     safetySettings: [
         {
@@ -33,8 +33,9 @@ class GeminiService {
             throw new Error('Gemini API key is not configured');
         }
         this.genAI = new GoogleGenerativeAI(this.apiKey);
+        // Use the full model name format
         this.model = this.genAI.getGenerativeModel({
-            model: AI_CONFIG.model,
+            model: 'models/gemini-pro',
             generationConfig: AI_CONFIG.generationConfig,
             safetySettings: AI_CONFIG.safetySettings,
         });
@@ -79,26 +80,38 @@ Communication Style:
     }
 
     async startDiagnosticChat(vehicleType = null) {
-        this.initialize();
-        const systemPrompt = this.buildSystemPrompt({ vehicleType });
+        try {
+            // Check if API key is configured
+            if (!this.apiKey || this.apiKey === 'your_gemini_api_key_here' || this.apiKey.trim() === '') {
+                throw new Error('AI_NOT_CONFIGURED');
+            }
 
-        this.chat = this.model.startChat({
-            history: [
-                {
-                    role: 'user',
-                    parts: [{ text: systemPrompt }],
-                },
-                {
-                    role: 'model',
-                    parts: [{ text: 'I understand. I\'m ready to help diagnose and fix vehicle problems. I\'ll ask clarifying questions and provide clear guidance.' }],
-                },
-            ],
-        });
+            this.initialize();
+            const systemPrompt = this.buildSystemPrompt({ vehicleType });
 
-        return {
-            message: `Hi! I'm your AI diagnostic assistant. ${vehicleType ? `I see you have a ${vehicleType}.` : ''} Can you describe what problem you're experiencing with your vehicle?`,
-            isAI: true,
-        };
+            this.chat = this.model.startChat({
+                history: [
+                    {
+                        role: 'user',
+                        parts: [{ text: systemPrompt }],
+                    },
+                    {
+                        role: 'model',
+                        parts: [{ text: 'I understand. I\'m ready to help diagnose and fix vehicle problems. I\'ll ask clarifying questions and provide clear guidance.' }],
+                    },
+                ],
+            });
+
+            return {
+                message: `Hi! I'm your AI diagnostic assistant. ${vehicleType ? `I see you have a ${vehicleType}.` : ''} Can you describe what problem you're experiencing with your vehicle?`,
+                isAI: true,
+            };
+        } catch (error) {
+            if (error.message === 'AI_NOT_CONFIGURED') {
+                throw new Error('AI feature is not configured. Please add your Gemini API key to use this feature.');
+            }
+            throw error;
+        }
     }
 
     async startSolutionChat(problemData) {
