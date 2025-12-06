@@ -42,6 +42,10 @@ export default function Feedback() {
         throw new Error('Please write your feedback');
       }
 
+      if (!auth.currentUser) {
+        throw new Error('You must be logged in to submit feedback');
+      }
+
       await addDoc(collection(db, 'feedback'), {
         userId: auth.currentUser.uid,
         userName: auth.currentUser.displayName || 'Anonymous',
