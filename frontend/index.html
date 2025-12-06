@@ -7,6 +7,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
   <meta name="theme-color" content="#ff6b00">
   <title>Vehicle Breakdown Assistance</title>
+
+  <!-- GitHub Pages SPA redirect restoration script -->
+  <!-- This must run before React initializes to restore the correct URL -->
+  <script>
+    (function () {
+      // Check if we were redirected from 404.html
+      const query = window.location.search;
+      if (query && query.indexOf('?p=/') === 0) {
+        // Extract the path from the query parameter
+        const route = query.slice(4).split('&')[0];
+
+        // Replace the current URL with the correct one
+        // This removes the ?p=/ parameter and restores the original path
+        window.history.replaceState(
+          null,
+          null,
+          window.location.pathname.slice(0, -1) + route +
+          (query.slice(4 + route.length) || '') +
+          window.location.hash
+        );
+      }
+    })();
+  </script>
 </head>
 
 <body>
