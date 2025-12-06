@@ -1,4 +1,3 @@
-```javascript
 // Location utility functions
 
 /**
@@ -18,7 +17,7 @@ export const getCurrentLocation = () => {
         navigator.geolocation.getCurrentPosition(
             (position) => {
                 const accuracy = position.coords.accuracy;
-                console.log(`✅ Location obtained with ${ Math.round(accuracy) }m accuracy`);
+                console.log(`✅ Location obtained with ${Math.round(accuracy)}m accuracy`);
 
                 // Warn if accuracy is poor (likely IP-based location)
                 if (accuracy > 5000) {
