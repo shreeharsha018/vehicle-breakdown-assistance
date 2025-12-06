@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Redirecting...</title>
+    <script>
+        // GitHub Pages SPA redirect script
+        // This captures the current path and redirects to index.html with the path as a query parameter
+        // The index.html script will then restore the correct URL
+        const pathSegmentsToKeep = 1; // Number of path segments to keep (for repo name)
+
+        const l = window.location;
+        const repo = l.pathname.split('/').filter(Boolean)[0];
+
+        // Store the full path (after the repo name) in sessionStorage
+        const redirect = l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/') +
+            (l.search ? '&' + l.search.slice(1) : '') +
+            l.hash;
+
+        // Redirect to index.html with the path encoded as a query parameter
+        l.replace(
+            l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+            '/' + repo + '/?p=/' + redirect
+        );
+    </script>
+</head>
+
+<body>
+    <p>Redirecting...</p>
+</body>
+
+</html>
