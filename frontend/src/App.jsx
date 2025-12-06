@@ -105,7 +105,7 @@ export default function App() {
   }
 
   return (
-    <Router>
+    <Router basename={import.meta.env.VITE_BASE_PATH || '/'}>
       <ScrollToTop />
       <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <Navbar user={user} isAdmin={isAdmin} />
