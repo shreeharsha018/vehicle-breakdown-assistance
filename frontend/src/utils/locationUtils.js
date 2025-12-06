@@ -1,7 +1,9 @@
+```javascript
 // Location utility functions
 
 /**
  * Request and get user's current location with high accuracy GPS
+ * Uses a practical timeout with smart fallback strategy
  * @returns Promise<{latitude: number, longitude: number, accuracy: number}> or throws error
  */
 export const getCurrentLocation = () => {
@@ -16,12 +18,12 @@ export const getCurrentLocation = () => {
         navigator.geolocation.getCurrentPosition(
             (position) => {
                 const accuracy = position.coords.accuracy;
-                console.log(`✅ Location obtained with ${Math.round(accuracy)}m accuracy`);
+                console.log(`✅ Location obtained with ${ Math.round(accuracy) }m accuracy`);
 
                 // Warn if accuracy is poor (likely IP-based location)
                 if (accuracy > 5000) {
                     console.warn('⚠️ Location accuracy is very poor (>5km). This might be IP-based location, not GPS.');
-                    console.warn('💡 Please allow location permission for accurate GPS positioning.');
+                    console.warn('💡 Tip: Allow location permission and wait a moment for GPS to acquire signal.');
                 }
 
                 resolve({
@@ -42,16 +44,16 @@ export const getCurrentLocation = () => {
                         console.error('❌ GPS unavailable');
                         break;
                     case error.TIMEOUT:
-                        errorMessage = 'GPS request timed out. Please try again or check your device settings.';
-                        console.error('❌ GPS timeout');
+                        errorMessage = 'GPS request timed out. Using fallback location. For better accuracy, please enable location.';
+                        console.error('❌ GPS timeout - falling back to default location');
                         break;
                 }
                 reject(new Error(errorMessage));
             },
             {
                 enableHighAccuracy: true,  // Force GPS usage
-                timeout: 30000,             // Wait up to 30 seconds for GPS
-                maximumAge: 0               // Always get fresh location, no cache
+                timeout: 8000,             // 8 seconds - practical for most GPS
+                maximumAge: 30000          // Accept cached location up to 30s old
             }
         );
     });
