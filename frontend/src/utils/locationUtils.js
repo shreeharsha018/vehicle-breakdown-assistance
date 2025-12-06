@@ -51,7 +51,7 @@ export const getCurrentLocation = () => {
             },
             {
                 enableHighAccuracy: true,  // Force GPS usage
-                timeout: 8000,             // 8 seconds - practical for most GPS
+                timeout: 6000,             // 6 seconds - fast and practical
                 maximumAge: 30000          // Accept cached location up to 30s old
             }
         );
