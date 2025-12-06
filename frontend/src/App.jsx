@@ -105,7 +105,7 @@ export default function App() {
   }
 
   return (
-    <Router basename="/vehicle-breakdown-assistance">
+    <Router>
       <ScrollToTop />
       <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <Navbar user={user} isAdmin={isAdmin} />
