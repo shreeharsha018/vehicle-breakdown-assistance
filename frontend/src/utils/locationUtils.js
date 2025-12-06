@@ -1,8 +1,8 @@
 // Location utility functions
 
 /**
- * Request and get user's current location
- * @returns Promise<{latitude: number, longitude: number}> or throws error
+ * Request and get user's current location with high accuracy GPS
+ * @returns Promise<{latitude: number, longitude: number, accuracy: number}> or throws error
  */
 export const getCurrentLocation = () => {
     return new Promise((resolve, reject) => {
@@ -11,33 +11,47 @@ export const getCurrentLocation = () => {
             return;
         }
 
+        console.log('🔍 Requesting high-accuracy GPS location...');
+
         navigator.geolocation.getCurrentPosition(
             (position) => {
+                const accuracy = position.coords.accuracy;
+                console.log(`✅ Location obtained with ${Math.round(accuracy)}m accuracy`);
+
+                // Warn if accuracy is poor (likely IP-based location)
+                if (accuracy > 5000) {
+                    console.warn('⚠️ Location accuracy is very poor (>5km). This might be IP-based location, not GPS.');
+                    console.warn('💡 Please allow location permission for accurate GPS positioning.');
+                }
+
                 resolve({
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude,
-                    accuracy: position.coords.accuracy
+                    accuracy: accuracy
                 });
             },
             (error) => {
                 let errorMessage = 'Failed to get location';
                 switch (error.code) {
                     case error.PERMISSION_DENIED:
-                        errorMessage = 'Location permission denied. Please enable location access in your browser settings.';
+                        errorMessage = 'Location permission denied. Please allow location access for accurate GPS positioning.';
+                        console.error('❌ GPS permission denied');
                         break;
                     case error.POSITION_UNAVAILABLE:
-                        errorMessage = 'Location information unavailable. Please check your device settings.';
+                        errorMessage = 'Location information unavailable. Please check your device GPS settings.';
+                        console.error('❌ GPS unavailable');
                         break;
                     case error.TIMEOUT:
-                        errorMessage = 'Location request timed out. Please try again.';
+                        errorMessage = 'GPS request timed out. Please try again or check your device settings.';
+                        console.error('❌ GPS timeout');
                         break;
                 }
                 reject(new Error(errorMessage));
             },
             {
-                enableHighAccuracy: true,
-                timeout: 10000,
-                maximumAge: 0
+                enableHighAccuracy: true,  // Force GPS usage
+                timeout: 30000,             // Wait up to 30 seconds for GPS
+                maximumAge: 0               // Always get fresh location, no cache
             }
         );
     });

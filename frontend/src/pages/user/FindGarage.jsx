@@ -143,6 +143,25 @@ export default function FindGarage() {
                     </div>
                 )}
 
+                {/* Show location accuracy warning */}
+                {userLocation && (
+                    <div style={{
+                        background: '#e3f2fd',
+                        border: '1px solid #2196f3',
+                        padding: '12px',
+                        borderRadius: '8px',
+                        marginBottom: '1rem',
+                        fontSize: '14px'
+                    }}>
+                        📍 Using your current location
+                        {error && error.includes('IP-based') && (
+                            <div style={{ marginTop: '8px', color: '#d32f2f' }}>
+                                ⚠️ Location may be inaccurate. Please allow GPS permission for precise location.
+                            </div>
+                        )}
+                    </div>
+                )}
+
                 {/* Vehicle Type Filter */}
                 <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
                     {[
