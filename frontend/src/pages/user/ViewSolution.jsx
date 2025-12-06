@@ -4,6 +4,7 @@ import { getDoc, doc, addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../../config/firebase";
 import { fallbackProblemIndex } from "./ViewProblems";
 import { getCurrentLocation } from "../../utils/locationUtils";
+import ChatWidget from "../../components/AIChat/ChatWidget";
 
 export default function ViewSolution() {
   const { problemId } = useParams();
@@ -314,6 +315,15 @@ export default function ViewSolution() {
           Give Feedback →
         </button>
       </div>
+
+      <ChatWidget
+        mode="solution"
+        problemData={{
+          vehicleType: problem?.vehicleType || fallbackProblem?.vehicleType,
+          title: problem?.title || fallbackProblem?.title,
+          description: problem?.description || fallbackProblem?.description
+        }}
+      />
     </div>
   );
 }

@@ -82,7 +82,7 @@ vehicle-breakdown-assistance/
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/yourusername/vehicle-breakdown-assistance.git
+git clone https://github.com/shreeharsha018/vehicle-breakdown-assistance.git
 cd vehicle-breakdown-assistance
 ```
 
@@ -168,7 +168,7 @@ Go to **Settings → Pages**
 
 Every push to `main` triggers automatic deployment via GitHub Actions.
 
-Access your site at: `https://yourusername.github.io/vehicle-breakdown-assistance/`
+Access your site at: `https://shreeharsha018.github.io/vehicle-breakdown-assistance/`
 
 ---
 
@@ -351,7 +351,7 @@ This project is licensed under the MIT License.
 ## 🆘 Support
 
 For issues or questions:
-- Create an [issue](https://github.com/yourusername/vehicle-breakdown-assistance/issues)
+- Create an [issue](https://github.com/shreeharsha018/vehicle-breakdown-assistance/issues)
 - Email: support@vba.com
 
 ---

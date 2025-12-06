@@ -13,7 +13,7 @@ Thank you for your interest in contributing to Vehicle Breakdown Assistance Plat
 
 1. **Fork the repository**
 ```bash
-git clone https://github.com/yourusername/vehicle-breakdown-assistance.git
+git clone https://github.com/shreeharsha018/vehicle-breakdown-assistance.git
 cd vehicle-breakdown-assistance
 ```
 

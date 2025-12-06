@@ -19,8 +19,9 @@ Your Firebase credentials need to be stored as GitHub secrets.
 | `VITE_FIREBASE_STORAGE_BUCKET` | Your storage bucket |
 | `VITE_FIREBASE_MESSAGING_SENDER_ID` | Your sender ID |
 | `VITE_FIREBASE_APP_ID` | Your app ID |
+| `VITE_GEMINI_API_KEY` | Your Gemini AI API key |
 
-**Important:** Copy values from `frontend/.env` file (without `VITE_` prefix in the `.env` file)
+**Important:** Get Gemini API key from [https://ai.google.dev](https://ai.google.dev) - see `GEMINI_API_SETUP.md` for details
 
 ---
 
@@ -58,7 +59,7 @@ Your app will be available at:
 https://shreeharsha018.github.io/vehicle-breakdown-assistance/
 ```
 
-**Note:** Replace `shreeharsha018` with your GitHub username if different.
+**Note:** Replace `shreeharsha018` with your GitHub username.
 
 ---
 
