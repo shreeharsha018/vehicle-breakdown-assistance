@@ -23,7 +23,7 @@
         window.history.replaceState(
           null,
           null,
-          window.location.pathname.slice(0, -1) + route +
+          window.location.pathname.replace(/\/$/, '') + '/' + route +
           (query.slice(4 + route.length) || '') +
           window.location.hash
         );
