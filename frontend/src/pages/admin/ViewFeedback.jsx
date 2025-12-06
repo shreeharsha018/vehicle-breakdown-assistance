@@ -4,6 +4,7 @@ import { db } from '../../config/firebase';
 
 export default function ViewFeedback() {
   const [feedback, setFeedback] = useState([]);
+  const [allFeedback, setAllFeedback] = useState([]); // Store all feedback for counts
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
 
@@ -19,14 +20,19 @@ export default function ViewFeedback() {
         ...doc.data()
       }));
 
+      // Store all feedback for accurate counts
+      setAllFeedback(feedbackList);
+
+      // Filter based on selection
+      let filteredList = [...feedbackList];
       if (filter === 'approved') {
-        feedbackList = feedbackList.filter(f => f.approved);
+        filteredList = filteredList.filter(f => f.approved);
       } else if (filter === 'pending') {
-        feedbackList = feedbackList.filter(f => !f.approved);
+        filteredList = filteredList.filter(f => !f.approved);
       }
 
-      feedbackList.sort((a, b) => (b.createdAt?.toDate?.() || 0) - (a.createdAt?.toDate?.() || 0));
-      setFeedback(feedbackList);
+      filteredList.sort((a, b) => (b.createdAt?.toDate?.() || 0) - (a.createdAt?.toDate?.() || 0));
+      setFeedback(filteredList);
     } catch (error) {
       console.error('Error fetching feedback:', error);
     } finally {
@@ -75,19 +81,19 @@ export default function ViewFeedback() {
           onClick={() => setFilter('all')}
           className={`btn ${filter === 'all' ? 'btn-primary' : 'btn-secondary'}`}
         >
-          All ({feedback.length})
+          All ({allFeedback.length})
         </button>
         <button
           onClick={() => setFilter('pending')}
           className={`btn ${filter === 'pending' ? 'btn-primary' : 'btn-secondary'}`}
         >
-          Pending
+          Pending ({allFeedback.filter(f => !f.approved).length})
         </button>
         <button
           onClick={() => setFilter('approved')}
           className={`btn ${filter === 'approved' ? 'btn-primary' : 'btn-secondary'}`}
         >
-          Approved
+          Approved ({allFeedback.filter(f => f.approved).length})
         </button>
       </div>
 
