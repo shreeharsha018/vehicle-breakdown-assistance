@@ -136,6 +136,17 @@ npm run dev
 
 ## 📦 Deployment
 
+### Deployment Platforms
+
+This project supports deployment to multiple platforms:
+
+| Platform | URL | Status |
+|----------|-----|--------|
+| **GitHub Pages** | [shreeharsha018.github.io/vehicle-breakdown-assistance](https://shreeharsha018.github.io/vehicle-breakdown-assistance/) | ✅ Production |
+| **Cloudflare Pages** | [vba.pages.dev](https://vba.pages.dev/) | ✅ Production |
+
+Both platforms deploy automatically on push to `main` branch.
+
 ### Deploy to GitHub Pages
 
 1. **Push to GitHub**
