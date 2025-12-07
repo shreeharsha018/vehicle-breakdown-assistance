@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { collection, getDocs, addDoc, deleteDoc, doc } from 'firebase/firestore';
+import { collection, getDocs, addDoc, deleteDoc, doc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../config/firebase';
 
 export default function ManageSolutions() {
@@ -73,7 +73,7 @@ export default function ManageSolutions() {
         steps: formData.steps.split('\n').filter(s => s.trim()),
         tools: formData.tools.split('\n').filter(s => s.trim()),
         precautions: formData.precautions,
-        createdAt: new Date()
+        createdAt: serverTimestamp()
       };
 
       const docRef = await addDoc(collection(db, 'solutions'), solutionData);
