@@ -91,7 +91,8 @@ export default function ViewSolution() {
           vehicleType: problem?.vehicleType || fallbackProblem?.vehicleType || 'Unknown',
           location: {
             latitude: location.latitude,
-            longitude: location.longitude
+            longitude: location.longitude,
+            accuracy: location.accuracy
           },
           requestType: 'view-solution',
           status: 'pending',

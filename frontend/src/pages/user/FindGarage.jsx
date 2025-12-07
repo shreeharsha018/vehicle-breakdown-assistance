@@ -143,20 +143,41 @@ export default function FindGarage() {
                     </div>
                 )}
 
-                {/* Show location accuracy warning */}
+                {/* Show GPS status with prominent accuracy indicator */}
                 {userLocation && (
                     <div style={{
-                        background: '#e3f2fd',
-                        border: '1px solid #2196f3',
-                        padding: '12px',
-                        borderRadius: '8px',
-                        marginBottom: '1rem',
+                        background: userLocation.accuracy <= 100 ? '#d1fae5' : '#fef3c7',
+                        border: userLocation.accuracy <= 100 ? '2px solid #10b981' : '2px solid #f59e0b',
+                        padding: '16px',
+                        borderRadius: '12px',
+                        marginBottom: '1.5rem',
                         fontSize: '14px'
                     }}>
-                        📍 Using your current location
-                        {error && error.includes('IP-based') && (
-                            <div style={{ marginTop: '8px', color: '#d32f2f' }}>
-                                ⚠️ Location may be inaccurate. Please allow GPS permission for precise location.
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
+                            <div style={{ fontSize: '24px' }}>
+                                {userLocation.accuracy <= 100 ? '✅' : '⚠️'}
+                            </div>
+                            <div>
+                                <div style={{ fontWeight: '700', fontSize: '16px' }}>
+                                    GPS Accuracy: {Math.round(userLocation.accuracy || 0)} meters
+                                </div>
+                                <div style={{ marginTop: '4px', opacity: 0.9 }}>
+                                    {userLocation.accuracy <= 100
+                                        ? '🎯 High accuracy GPS location acquired'
+                                        : '📍 Using available location data'}
+                                </div>
+                            </div>
+                        </div>
+                        {userLocation.accuracy > 1000 && (
+                            <div style={{
+                                marginTop: '12px',
+                                padding: '12px',
+                                background: 'rgba(239, 68, 68, 0.1)',
+                                borderRadius: '8px',
+                                fontSize: '13px'
+                            }}>
+                                <strong>⚠️ Low Accuracy Warning:</strong> Your location might be inaccurate.
+                                <br />Please click the 🔒 lock icon in your browser's address bar and enable location permissions for better accuracy.
                             </div>
                         )}
                     </div>
