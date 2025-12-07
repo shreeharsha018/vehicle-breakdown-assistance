@@ -1,8 +1,8 @@
 // Location utility functions
 
 /**
- * Get high-accuracy GPS location aggressively
- * Uses watchPosition to continuously monitor until we get accurate coordinates
+ * Get high-accuracy GPS location
+ * Uses getCurrentPosition with optimal settings (proven in geotag-webcam project)
  * @returns Promise<{latitude: number, longitude: number, accuracy: number}>
  */
 export const getCurrentLocation = () => {
@@ -12,81 +12,39 @@ export const getCurrentLocation = () => {
             return;
         }
 
-        console.log('🔍 Starting GPS acquisition...');
+        console.log('🔍 Requesting high-accuracy location...');
 
-        let watchId = null;
-        let bestAccuracy = Infinity;
-        let bestPosition = null;
-        let attempts = 0;
-        const MAX_WAIT_TIME = 10000; // 10 seconds max wait
-        const ACCEPTABLE_ACCURACY = 100; // Accept if accuracy < 100 meters
-
-        const timer = setTimeout(() => {
-            if (watchId !== null) {
-                navigator.geolocation.clearWatch(watchId);
-            }
-
-            if (bestPosition) {
-                console.log(`⏰ Time limit reached. Using best position with ${Math.round(bestAccuracy)}m accuracy`);
-                resolve(bestPosition);
-            } else {
-                reject(new Error('GPS timeout. Please ensure location services are enabled and you have granted permission.'));
-            }
-        }, MAX_WAIT_TIME);
-
-        // Use watchPosition for continuous updates until we get good accuracy
-        watchId = navigator.geolocation.watchPosition(
+        navigator.geolocation.getCurrentPosition(
             (position) => {
-                attempts++;
-                const accuracy = position.coords.accuracy;
+                const { latitude, longitude, accuracy } = position.coords;
 
-                console.log(`📍 GPS update #${attempts}: ${Math.round(accuracy)}m accuracy`);
+                console.log(`✅ Location acquired: ${latitude.toFixed(6)}, ${longitude.toFixed(6)} (±${Math.round(accuracy)}m)`);
 
-                // Keep the best (most accurate) position
-                if (accuracy < bestAccuracy) {
-                    bestAccuracy = accuracy;
-                    bestPosition = {
-                        latitude: position.coords.latitude,
-                        longitude: position.coords.longitude,
-                        accuracy: accuracy
-                    };
-                }
-
-                // If we got acceptable accuracy, resolve immediately
-                if (accuracy <= ACCEPTABLE_ACCURACY) {
-                    clearTimeout(timer);
-                    navigator.geolocation.clearWatch(watchId);
-                    console.log(`✅ High-accuracy GPS acquired: ${Math.round(accuracy)}m`);
-                    resolve(bestPosition);
-                }
+                resolve({
+                    latitude,
+                    longitude,
+                    accuracy
+                });
             },
             (error) => {
-                clearTimeout(timer);
-                if (watchId !== null) {
-                    navigator.geolocation.clearWatch(watchId);
+                console.error('❌ Location error:', error);
+
+                let errorMessage = 'Failed to get location: ' + error.message;
+
+                if (error.code === 1) {
+                    errorMessage = '🔴 Location permission denied. Please enable location services and reload.';
+                } else if (error.code === 2) {
+                    errorMessage = '🔴 Location unavailable. Please check your connection.';
+                } else if (error.code === 3) {
+                    errorMessage = '🔴 GPS timeout. Please try again.';
                 }
 
-                let errorMessage = 'Failed to get GPS location';
-                switch (error.code) {
-                    case error.PERMISSION_DENIED:
-                        errorMessage = '🔴 Location permission DENIED. Click the 🔒 icon in address bar and allow location access.';
-                        console.error('❌ User denied GPS permission');
-                        break;
-                    case error.POSITION_UNAVAILABLE:
-                        errorMessage = '🔴 GPS unavailable. Make sure location services are enabled on your device.';
-                        console.error('❌ GPS unavailable');
-                        break;
-                    case error.TIMEOUT:
-                        errorMessage = '🔴 GPS timeout. Please try again.';
-                        console.error('❌ GPS timeout');
-                        break;
-                }
                 reject(new Error(errorMessage));
             },
             {
-                enableHighAccuracy: true,  // FORCE GPS usage
-                maximumAge: 0,              // No cached positions
-                timeout: 8000               // Timeout per attempt
+                enableHighAccuracy: true,  // Force GPS usage (not WiFi/network)
+                timeout: 20000,            // 20 seconds - same as geotag-webcam
+                maximumAge: 0              // Don't use cached location - always fresh
             }
         );
     });
