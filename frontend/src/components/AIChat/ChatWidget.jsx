@@ -1,16 +1,19 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
+import ReactMarkdown from 'react-markdown';
 import geminiService from '../../services/geminiService';
 import './ChatWidget.css';
 
 export default function ChatWidget({ mode = 'diagnostic', problemData = null }) {
     const [isOpen, setIsOpen] = useState(false);
+    const [isFullscreen, setIsFullscreen] = useState(false);
     const [messages, setMessages] = useState([]);
     const [inputMessage, setInputMessage] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const messagesEndRef = useRef(null);
     const inputRef = useRef(null);
+    const hasInitialized = useRef(false);
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -20,13 +23,9 @@ export default function ChatWidget({ mode = 'diagnostic', problemData = null }) 
         scrollToBottom();
     }, [messages]);
 
-    useEffect(() => {
-        if (isOpen && messages.length === 0) {
-            initializeChat();
-        }
-    }, [isOpen]);
+    const initializeChat = useCallback(async () => {
+        if (hasInitialized.current) return;
 
-    const initializeChat = async () => {
         setIsLoading(true);
         setError(null);
 
@@ -41,12 +40,19 @@ export default function ChatWidget({ mode = 'diagnostic', problemData = null }) 
             }
 
             setMessages([welcomeMessage]);
+            hasInitialized.current = true;
         } catch (err) {
             setError(err.message);
         } finally {
             setIsLoading(false);
         }
-    };
+    }, [mode, problemData]);
+
+    useEffect(() => {
+        if (isOpen && messages.length === 0 && !hasInitialized.current) {
+            initializeChat();
+        }
+    }, [isOpen, messages.length, initializeChat]);
 
     const handleSendMessage = async (e) => {
         e?.preventDefault();
@@ -75,6 +81,15 @@ export default function ChatWidget({ mode = 'diagnostic', problemData = null }) 
         }
     };
 
+    const handleKeyDown = (e) => {
+        // Enter without Shift = send message
+        // Shift + Enter = new line (default textarea behavior)
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            handleSendMessage();
+        }
+    };
+
     const handleQuickAction = (question) => {
         setInputMessage(question);
         setTimeout(() => {
@@ -86,6 +101,9 @@ export default function ChatWidget({ mode = 'diagnostic', problemData = null }) 
         setIsOpen(!isOpen);
         if (!isOpen) {
             setTimeout(() => inputRef.current?.focus(), 300);
+        } else {
+            // Reset initialization flag when closing chat
+            hasInitialized.current = false;
         }
     };
 
@@ -113,16 +131,26 @@ export default function ChatWidget({ mode = 'diagnostic', problemData = null }) 
     return (
         <div className="chat-widget">
             {isOpen && (
-                <div className="chat-window">
+                <div className={`chat-window ${isFullscreen ? 'fullscreen' : ''}`}>
                     <div className="chat-header">
                         <h3>🤖 AI Assistant</h3>
-                        <button
-                            className="chat-header-close"
-                            onClick={toggleChat}
-                            aria-label="Close chat"
-                        >
-                            ×
-                        </button>
+                        <div style={{ display: 'flex', gap: '8px' }}>
+                            <button
+                                className="chat-header-button"
+                                onClick={() => setIsFullscreen(!isFullscreen)}
+                                aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
+                                title={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
+                            >
+                                {isFullscreen ? '⊡' : '⊞'}
+                            </button>
+                            <button
+                                className="chat-header-close"
+                                onClick={toggleChat}
+                                aria-label="Close chat"
+                            >
+                                ×
+                            </button>
+                        </div>
                     </div>
 
                     <div className="chat-messages">
@@ -153,7 +181,11 @@ export default function ChatWidget({ mode = 'diagnostic', problemData = null }) 
                                         </div>
                                         <div>
                                             <div className="message-content">
-                                                {msg.message}
+                                                {msg.isAI ? (
+                                                    <ReactMarkdown>{msg.message}</ReactMarkdown>
+                                                ) : (
+                                                    msg.message
+                                                )}
                                             </div>
                                             {msg.timestamp && (
                                                 <div className="message-timestamp">
@@ -184,15 +216,16 @@ export default function ChatWidget({ mode = 'diagnostic', problemData = null }) 
                     </div>
 
                     <form onSubmit={handleSendMessage} className="chat-input-container">
-                        <input
+                        <textarea
                             ref={inputRef}
-                            type="text"
                             className="chat-input"
-                            placeholder="Type your message..."
+                            placeholder="Type your message... (Shift+Enter for new line)"
                             value={inputMessage}
                             onChange={(e) => setInputMessage(e.target.value)}
+                            onKeyDown={handleKeyDown}
                             disabled={isLoading}
-                        />
+                            rows={1}
+                        ></textarea>
                         <button
                             type="submit"
                             className="chat-send-button"

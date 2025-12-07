@@ -58,6 +58,33 @@
     }
 }
 
+/* Fullscreen Mode */
+.chat-window.fullscreen {
+    position: fixed !important;
+    width: 75vw !important;
+    height: 75vh !important;
+    max-width: 1200px;
+    top: 50% !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: translate(-50%, -50%) !important;
+    animation: expandToFullscreen 0.3s ease-out;
+    z-index: 1001;
+}
+
+@keyframes expandToFullscreen {
+    from {
+        width: 380px;
+        height: 550px;
+    }
+
+    to {
+        width: 75vw;
+        height: 75vh;
+    }
+}
+
 .chat-header {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
@@ -89,6 +116,25 @@
 }
 
 .chat-header-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.chat-header-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.chat-header-button:hover {
     background: rgba(255, 255, 255, 0.2);
 }
 
@@ -124,6 +170,21 @@
     font-size: 14px;
     outline: none;
     transition: border-color 0.2s;
+    font-family: inherit;
+    resize: none;
+    min-height: 40px;
+    max-height: 120px;
+    overflow-y: auto;
+    line-height: 1.5;
+}
+
+.chat-input::-webkit-scrollbar {
+    width: 4px;
+}
+
+.chat-input::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 2px;
 }
 
 .chat-input:focus {
@@ -251,6 +312,17 @@
         right: 20px;
     }
 
+    .chat-window.fullscreen {
+        position: fixed !important;
+        width: 95vw !important;
+        height: 90vh !important;
+        top: 50% !important;
+        left: 50% !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: translate(-50%, -50%) !important;
+    }
+
     .chat-widget {
         right: 20px;
         bottom: 20px;
@@ -316,4 +388,75 @@
 
 .message.user .message-timestamp {
     text-align: right;
+}
+
+/* Markdown Formatting Styles */
+.message-content p {
+    margin: 0 0 8px 0;
+    white-space: pre-wrap;
+}
+
+.message-content p:last-child {
+    margin-bottom: 0;
+}
+
+.message-content ul,
+.message-content ol {
+    margin: 8px 0;
+    padding-left: 20px;
+    display: block;
+}
+
+.message-content li {
+    margin: 4px 0;
+    display: list-item;
+    white-space: normal;
+}
+
+.message-content strong {
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.message.user .message-content strong {
+    color: white;
+}
+
+.message-content code {
+    background: #f1f5f9;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: 'Courier New', monospace;
+}
+
+.message.user .message-content code {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.message-content pre {
+    background: #f1f5f9;
+    padding: 12px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 8px 0;
+}
+
+.message-content h1,
+.message-content h2,
+.message-content h3 {
+    margin: 12px 0 8px 0;
+    font-weight: 600;
+}
+
+.message-content h1 {
+    font-size: 18px;
+}
+
+.message-content h2 {
+    font-size: 16px;
+}
+
+.message-content h3 {
+    font-size: 14px;
 }

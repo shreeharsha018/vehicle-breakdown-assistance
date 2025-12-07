@@ -175,8 +175,8 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* AI Chat Widget - Temporarily disabled due to API issues */}
-      {/* <ChatWidget mode="diagnostic" /> */}
+      {/* AI Chat Widget */}
+      <ChatWidget mode="diagnostic" />
     </div>
   );
 }

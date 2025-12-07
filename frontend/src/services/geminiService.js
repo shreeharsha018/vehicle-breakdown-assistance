@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
 const AI_CONFIG = {
-    model: 'gemini-1.5-flash',
+    model: 'gemini-2.5-flash', // Stable Gemini 2.5 model (verified available)
     generationConfig: {
         temperature: 0.7,
         topP: 0.95,
@@ -33,9 +33,9 @@ class GeminiService {
             throw new Error('Gemini API key is not configured');
         }
         this.genAI = new GoogleGenerativeAI(this.apiKey);
-        // Use the full model name format
+        // Use gemini-pro - stable model available in v1beta API
         this.model = this.genAI.getGenerativeModel({
-            model: 'models/gemini-pro',
+            model: AI_CONFIG.model,
             generationConfig: AI_CONFIG.generationConfig,
             safetySettings: AI_CONFIG.safetySettings,
         });
@@ -147,7 +147,11 @@ Solution description: ${problemData.description || 'Repair guide for this specif
         });
 
         return {
-            message: `I can help you with fixing your ${problemData.vehicleType}'s ${problemData.title}. Feel free to ask:\n• What if I don't have a specific tool?\n• Can you explain a step in more detail?\n• What should I do if something doesn't work?`,
+            message: `I can help you with fixing your ${problemData.vehicleType}'s ${problemData.title}. Feel free to ask:
+
+• What if I don't have a specific tool?
+• Can you explain a step in more detail?
+• What should I do if something doesn't work?`,
             isAI: true,
         };
     }

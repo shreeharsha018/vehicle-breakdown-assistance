@@ -1,20 +1,23 @@
 # How to Get Your Gemini API Key
 
+The AI chatbot feature in this application uses **Google's Gemini Pro** model to provide intelligent vehicle diagnostics and repair assistance.
+
 ## Step 1: Visit Google AI Studio
-1. Go to [https://ai.google.dev](https://ai.google.dev)
-2. Click **"Get API key in Google AI Studio"**
 
-## Step 2: Create API Key
-1. Sign in with your Google account
-2. Click **"Get API Key"** button
-3. Select **"Create API key in new project"** (or use existing project)
-4. Copy the API key (format: `AIza...`)
+Go to [https://ai.google.dev](https://ai.google.dev) and sign in with your Google account.
 
-## Step 3: Add to Environment
+## Step 2: Get Your API Key
 
-### For Local Development:
-1. Create or edit `frontend/.env` file
-2. Add this line:
+1. Click on **"Get API key"** in the top navigation
+2. Click **"Create API key"** 
+3. Choose an existing Google Cloud project or create a new one
+4. Copy the generated API key
+
+## Step 3: Add to Your Environment
+
+1. Navigate to the `frontend` folder in your project
+2. Create or edit the `.env` file
+3. Add the following line:
    ```
    VITE_GEMINI_API_KEY=YOUR_API_KEY_HERE
    ```
