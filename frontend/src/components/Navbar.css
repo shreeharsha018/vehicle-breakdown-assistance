@@ -26,6 +26,15 @@
   color: var(--primary);
 }
 
+/* Brand text responsive */
+.brand-short {
+  display: none;
+}
+
+.brand-full {
+  display: inline;
+}
+
 .nav-links {
   display: flex;
   gap: 2rem;
@@ -77,7 +86,27 @@
   }
 
   .nav-brand {
-    font-size: 1rem;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* Show VBA on mobile, hide full text */
+  .brand-full {
+    display: none;
+  }
+
+  .brand-short {
+    display: inline;
+    font-family: 'Rajdhani', 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 0.1em;
+    background: linear-gradient(135deg, #ff6b00 0%, #ff3b30 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .menu-toggle {

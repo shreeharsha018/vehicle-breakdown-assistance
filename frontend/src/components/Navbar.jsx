@@ -33,7 +33,9 @@ export default function Navbar({ user, isAdmin }) {
     <nav className="navbar">
       <div className="container navbar-container">
         <Link to="/" className="nav-brand" onClick={closeMobileMenu}>
-          <CarIcon size={28} color="#ff6b00" /> Vehicle Breakdown Assistance
+          <CarIcon size={28} color="#ff6b00" />
+          <span className="brand-full">Vehicle Breakdown Assistance</span>
+          <span className="brand-short">VBA</span>
         </Link>
 
         <button className="menu-toggle" onClick={toggleMobileMenu}>

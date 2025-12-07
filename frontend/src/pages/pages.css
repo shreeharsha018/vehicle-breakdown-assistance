@@ -711,8 +711,8 @@ tbody tr:hover {
   }
 
   .dashboard-grid {
-    grid-template-columns: 1fr;
-    gap: 0.875rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
   }
 
   .dashboard-card {
@@ -725,6 +725,12 @@ tbody tr:hover {
 
   .dashboard-card p {
     font-size: 0.85rem;
+  }
+
+  /* AI card and Emergency card should span full width on mobile */
+  .dashboard-card.ai-card,
+  .dashboard-card.emergency-card {
+    grid-column: 1 / -1;
   }
 
   /* Services grid */
