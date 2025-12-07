@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom';
-import './pages.css';
+import { useNavigate } from 'react-router-dom';
+import CarIcon from '../components/CarIcon';
+import './Services.css';
 
 export default function Services() {
     return (
@@ -94,7 +95,7 @@ export default function Services() {
                                 padding: '1.5rem',
                                 borderRadius: '10px 10px 0 0'
                             }}>
-                                <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>🚗</div>
+                                <div style={{ marginBottom: '0.5rem' }}><CarIcon size={48} color="#ff6b00" /></div>
                                 <h3>4-Wheeler Services</h3>
                                 <p style={{ color: 'rgba(255,255,255,0.9)', fontSize: '0.95rem', margin: 0 }}>
                                     Cars, SUVs & Vans

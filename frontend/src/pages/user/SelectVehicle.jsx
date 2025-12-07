@@ -1,4 +1,6 @@
 import { useNavigate } from 'react-router-dom';
+import CarIcon from '../../components/CarIcon';
+import './SelectVehicle.css';
 
 export default function SelectVehicle() {
   const navigate = useNavigate();
@@ -19,7 +21,7 @@ export default function SelectVehicle() {
     {
       id: '4-wheeler',
       name: '4-Wheeler',
-      icon: '🚗',
+      icon: <CarIcon size={36} color="#ff6b00" />,
       description: 'Cars, SUVs'
     }
   ];

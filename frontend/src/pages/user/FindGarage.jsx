@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import garageService from '../../services/garageService';
 import { getCurrentLocation } from '../../utils/locationUtils';
+import GarageMap from '../../components/GarageMap';
+import CarIcon from '../../components/CarIcon';
+import './FindGarage.css';
 
 export default function FindGarage() {
     const [userLocation, setUserLocation] = useState(null);
@@ -43,7 +46,7 @@ export default function FindGarage() {
                 console.log('No garages in Firestore, loading sample data');
                 const sampleGarages = garageService.getSampleGarages().map((garage, index) => ({
                     ...garage,
-                    id: `sample-${index}`,
+                    id: `sample - ${index} `,
                     isActive: true,
                     distance: garageService.calculateDistance(
                         location.latitude,
@@ -69,7 +72,7 @@ export default function FindGarage() {
             // Load sample garages
             const sampleGarages = garageService.getSampleGarages().map((garage, index) => ({
                 ...garage,
-                id: `sample-${index}`,
+                id: `sample - ${index} `,
                 isActive: true,
                 distance: garageService.calculateDistance(
                     defaultLocation[0],
@@ -186,7 +189,7 @@ export default function FindGarage() {
                 {/* Vehicle Type Filter */}
                 <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
                     {[
-                        { value: 'all', label: 'All Types', icon: '🚗' },
+                        { value: 'all', label: 'All Types', icon: <CarIcon size={20} color="currentColor" /> },
                         { value: '2-wheeler', label: '2-Wheeler', icon: '🏍️' },
                         { value: '3-wheeler', label: '3-Wheeler', icon: '🛺' },
                         { value: '4-wheeler', label: '4-Wheeler', icon: '🚙' },
@@ -249,7 +252,7 @@ export default function FindGarage() {
                         {filteredGarages.map((garage) => (
                             <div
                                 key={garage.id}
-                                id={`garage-${garage.id}`}
+                                id={`garage - ${garage.id} `}
                                 onClick={() => setSelectedGarage(garage)}
                                 style={{
                                     padding: '1.25rem',
@@ -322,7 +325,7 @@ export default function FindGarage() {
                                         🧭 Get Directions
                                     </button>
                                     <a
-                                        href={`tel:${garage.phone}`}
+                                        href={`tel:${garage.phone} `}
                                         onClick={(e) => e.stopPropagation()}
                                         style={{
                                             flex: 1,
