@@ -62,11 +62,7 @@ export default function Dashboard() {
         </Link>
 
         <Link to="/find-garage" style={{ textDecoration: 'none' }}>
-          <div className="dashboard-card" style={{
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-            color: 'white',
-            border: 'none'
-          }}>
+          <div className="dashboard-card">
             <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>🗺️</div>
             <h3>Find Garage</h3>
             <p>Locate nearby repair shops based on your vehicle type</p>
@@ -143,15 +139,12 @@ export default function Dashboard() {
         </div>
 
         <div className="dashboard-card ai-card" style={{
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-          color: 'white',
           gridColumn: 'span 2',
-          cursor: 'default',
-          border: 'none'
+          cursor: 'default'
         }}>
           <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🤖</div>
-          <h3 style={{ color: 'white', marginBottom: '0.5rem' }}>AI Diagnostic Assistant</h3>
-          <p style={{ color: 'rgba(255,255,255,0.9)', marginBottom: '1.5rem' }}>
+          <h3 style={{ marginBottom: '0.5rem' }}>AI Diagnostic Assistant</h3>
+          <p style={{ marginBottom: '1.5rem', color: 'var(--text-secondary)' }}>
             Not sure what's wrong? Describe your problem naturally and let AI help diagnose the issue!
           </p>
           <div style={{
@@ -160,17 +153,17 @@ export default function Dashboard() {
             flexWrap: 'wrap',
             fontSize: '0.9rem'
           }}>
-            <span style={{ background: 'rgba(255,255,255,0.2)', padding: '0.4rem 0.8rem', borderRadius: '12px' }}>
+            <span style={{ background: 'var(--bg-light)', padding: '0.4rem 0.8rem', borderRadius: '12px', color: 'var(--text-secondary)' }}>
               💬 Natural language understanding
             </span>
-            <span style={{ background: 'rgba(255,255,255,0.2)', padding: '0.4rem 0.8rem', borderRadius: '12px' }}>
-              🎯 Accurate  diagnostics
+            <span style={{ background: 'var(--bg-light)', padding: '0.4rem 0.8rem', borderRadius: '12px', color: 'var(--text-secondary)' }}>
+              🎯 Accurate diagnostics
             </span>
-            <span style={{ background: 'rgba(255,255,255,0.2)', padding: '0.4rem 0.8rem', borderRadius: '12px' }}>
+            <span style={{ background: 'var(--bg-light)', padding: '0.4rem 0.8rem', borderRadius: '12px', color: 'var(--text-secondary)' }}>
               🔧 Step-by-step guidance
             </span>
           </div>
-          <p style={{ fontSize: '0.85rem', marginTop: '1rem', opacity: 0.8 }}>
+          <p style={{ fontSize: '0.85rem', marginTop: '1rem', color: 'var(--text-tertiary)' }}>
             Click the chat button below to start 👇
           </p>
         </div>
