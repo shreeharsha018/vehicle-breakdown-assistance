@@ -727,9 +727,10 @@ tbody tr:hover {
     font-size: 0.85rem;
   }
 
-  /* AI card should be full width on mobile */
-  .dashboard-card.ai-card {
-    grid-column: 1;
+  /* AI card and Emergency card should span full width on mobile */
+  .dashboard-card.ai-card,
+  .dashboard-card.emergency-card {
+    grid-column: 1 / -1;
   }
 
   /* Services grid */
