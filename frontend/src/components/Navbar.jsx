@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { signOut } from 'firebase/auth';
 import { auth } from '../config/firebase';
+import CarIcon from './CarIcon';
 import './Navbar.css';
 
 export default function Navbar({ user, isAdmin }) {
@@ -32,7 +33,7 @@ export default function Navbar({ user, isAdmin }) {
     <nav className="navbar">
       <div className="container navbar-container">
         <Link to="/" className="nav-brand" onClick={closeMobileMenu}>
-          🚗 Vehicle Breakdown Assistance
+          <CarIcon size={28} color="#ff6b00" /> Vehicle Breakdown Assistance
         </Link>
 
         <button className="menu-toggle" onClick={toggleMobileMenu}>

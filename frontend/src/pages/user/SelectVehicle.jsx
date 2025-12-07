@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import CarIcon from '../../components/CarIcon';
 
 export default function SelectVehicle() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ export default function SelectVehicle() {
     {
       id: '4-wheeler',
       name: '4-Wheeler',
-      icon: '🚗',
+      icon: 'car',
       description: 'Cars, SUVs'
     }
   ];
@@ -42,7 +43,13 @@ export default function SelectVehicle() {
             className="vehicle-option"
             onClick={() => handleSelectVehicle(vehicle.id)}
           >
-            <div className="vehicle-option-icon">{vehicle.icon}</div>
+            <div className="vehicle-option-icon">
+              {vehicle.icon === 'car' ? (
+                <CarIcon size={36} color="#ff6b00" />
+              ) : (
+                vehicle.icon
+              )}
+            </div>
             <h3>{vehicle.name}</h3>
             <p>{vehicle.description}</p>
           </div>

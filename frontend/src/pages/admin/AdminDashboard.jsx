@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../config/firebase';
+import CarIcon from '../../components/CarIcon';
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState({
@@ -73,7 +74,7 @@ export default function AdminDashboard() {
 
         <Link to="/admin/vehicles" style={{ textDecoration: 'none' }}>
           <div className="dashboard-card">
-            <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>🚗</div>
+            <div style={{ marginBottom: '1rem' }}><CarIcon size={40} color="#ff6b00" /></div>
             <h3>Vehicle Types</h3>
             <p style={{ fontSize: '2rem', fontWeight: 'bold', color: '#2563eb' }}>
               {stats.totalVehicles}

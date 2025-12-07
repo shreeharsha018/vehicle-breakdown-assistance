@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import garageService from '../../services/garageService';
 import { getCurrentLocation } from '../../utils/locationUtils';
+import GarageMap from '../../components/GarageMap';
+import CarIcon from '../../components/CarIcon';
 
 export default function FindGarage() {
     const [userLocation, setUserLocation] = useState(null);
@@ -43,7 +45,7 @@ export default function FindGarage() {
                 console.log('No garages in Firestore, loading sample data');
                 const sampleGarages = garageService.getSampleGarages().map((garage, index) => ({
                     ...garage,
-                    id: `sample-${index}`,
+                    id: `sample - ${index} `,
                     isActive: true,
                     distance: garageService.calculateDistance(
                         location.latitude,
@@ -69,7 +71,7 @@ export default function FindGarage() {
             // Load sample garages
             const sampleGarages = garageService.getSampleGarages().map((garage, index) => ({
                 ...garage,
-                id: `sample-${index}`,
+                id: `sample - ${index} `,
                 isActive: true,
                 distance: garageService.calculateDistance(
                     defaultLocation[0],
@@ -205,7 +207,7 @@ export default function FindGarage() {
                                 transition: 'all 0.2s',
                             }}
                         >
-                            {type.icon} {type.label}
+                            {type.value === 'all' ? <CarIcon size={20} color="currentColor" /> : type.icon} {type.label}
                             <span style={{
                                 marginLeft: '8px',
                                 background: selectedVehicleType === type.value ? '#ff6b00' : '#ddd',
@@ -249,7 +251,7 @@ export default function FindGarage() {
                         {filteredGarages.map((garage) => (
                             <div
                                 key={garage.id}
-                                id={`garage-${garage.id}`}
+                                id={`garage - ${garage.id} `}
                                 onClick={() => setSelectedGarage(garage)}
                                 style={{
                                     padding: '1.25rem',
@@ -322,7 +324,7 @@ export default function FindGarage() {
                                         🧭 Get Directions
                                     </button>
                                     <a
-                                        href={`tel:${garage.phone}`}
+                                        href={`tel:${garage.phone} `}
                                         onClick={(e) => e.stopPropagation()}
                                         style={{
                                             flex: 1,

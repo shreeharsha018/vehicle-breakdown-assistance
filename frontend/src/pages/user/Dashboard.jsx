@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { auth } from '../../config/firebase';
 import { getDoc, doc } from 'firebase/firestore';
 import { db } from '../../config/firebase';
 import { Link } from 'react-router-dom';
 import ChatWidget from '../../components/AIChat/ChatWidget';
+import CarIcon from '../../components/CarIcon';
 
 export default function Dashboard() {
   const [user, setUser] = useState(null);
@@ -38,7 +39,7 @@ export default function Dashboard() {
       <div className="dashboard-grid">
         <Link to="/select-vehicle" style={{ textDecoration: 'none' }}>
           <div className="dashboard-card">
-            <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>🚗</div>
+            <div style={{ marginBottom: '1rem' }}><CarIcon size={40} color="#ff6b00" /></div>
             <h3>Get Help</h3>
             <p>Select your vehicle type and find solutions for your problems.</p>
           </div>

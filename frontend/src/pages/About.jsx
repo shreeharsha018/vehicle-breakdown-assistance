@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import CarIcon from '../components/CarIcon';
 import './pages.css';
 
 export default function About() {
@@ -33,7 +34,7 @@ export default function About() {
                     <h2>Why Choose Us?</h2>
                     <div className="features-grid" style={{ marginTop: '2rem' }}>
                         <div className="feature-card">
-                            <div className="feature-icon">🚗</div>
+                            <div className="feature-icon"><CarIcon size={40} color="#ff6b00" /></div>
                             <h3>All Vehicle Types</h3>
                             <p>Support for 2-wheelers, 3-wheelers, and 4-wheelers</p>
                         </div>
